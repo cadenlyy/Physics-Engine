@@ -1,8 +1,15 @@
 #include<bits/stdc++.h>
+#include<math.h>
+#include <stdlib.h>
+
 #include "constants.h"
 #include "Object.cpp"
+
 using namespace std;
 #define int long long
+
+typedef pair<float,float> pf;
+typedef pair<pf,pf> vec2d; //{{cartesian x, y},{polar d, angle}}
 
 float PI = 3.14159265358979323846;
 

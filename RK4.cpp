@@ -1,7 +1,12 @@
 #include <bits/stdc++.h>
+#include<math.h>
+#include <stdlib.h>
+
 using namespace std;
 #define int long long
-typedef pair<float, float> pf;
+
+typedef pair<float,float> pf;
+typedef pair<pf,pf> vec2d; //{{cartesian x, y},{polar d, angle}}
 
 pf rk4(float x, float y, float s, float (*f)(float,float)){
 	//time(x), velocity(y), timestep(s), function of acceleration(f)
