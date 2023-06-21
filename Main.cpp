@@ -2,10 +2,9 @@
 #include<math.h>
 #include <stdlib.h>
 
-#include "RK4.cpp"
-#include "Force generator.cpp"
-#include "Vector functions.h"
-#include "Object.cpp"
+#include "RK4.h"
+#include "Force generator.h"
+#include "Object.h"
 #include "constants.h"
 
 using namespace std;
@@ -18,11 +17,12 @@ void ball_terminal_velocity(){
 	fstream fout;
     fout.open("graph.csv", ios::out | ios::trunc);
 	//timestep(h), time(x), velocity(y)
-	float s = 0.1, tc = 0, vc = 0, xc = 0, yc = 0;
-	while(vc != rk4(tc, vc, s, fball).second){
-		fout << rk4(tc, vc, s, fball).first << ',' << rk4(tc, vc, s, fball).second << "\n";
-		tc = rk4(tc, vc, s, fball).first;
-		vc = rk4(tc, vc, s, fball).second;
+	float s = 0.1, tc = 0;
+	vec2d vc = vec2dcreate(0,0,0), pc = vec2dcreate(0,0,0);
+	while(tc <= 50.0){//end condition
+		tc += s;
+		vc = rk4(tc, vc, s, fball);
+		fout << tc << ',' << vc.first.first << "\n"; //output graph axis
     }
 }
 

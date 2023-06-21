@@ -4,6 +4,8 @@
 
 using namespace std;
 #define int long long
+#ifndef Vector_functions_H_
+#define Vector_functions_H_
 
 typedef pair<float,float> pf;
 typedef pair<pf,pf> vec2d; //{{cartesian x, y},{polar d, angle}}
@@ -25,12 +27,33 @@ vec2d vec2dcreate(float x, float y, bool c){
 }
 
 vec2d vec2dadd(vec2d x, vec2d y){
-    return vec2dcreate(x.first.first+y.first.first,x.first.second+y.first.second);
+    return vec2dcreate(x.first.first+y.first.first,x.first.second+y.first.second,0);
+}
+
+vec2d vec2dmulti(vec2d x, vec2d y){
+    return vec2dcreate(x.first.first*y.first.first,x.first.second*y.first.second,0);
+}
+vec2d vec2dsum(vector <vec2d> v){
+    vec2d ans = vec2dcreate(0,0,0);
+    for(auto i: v){
+        ans = vec2dadd(ans,i);
+    }
+    return ans;
+}
+
+float rad(float x){
+    return x*PI/180;
+}
+
+float degree(float x){
+    return x*180/PI;
 }
 
 float angle_add(float x, float y){
-    if(x+y >= 360){
-        return x+y-360;
+    if(x+y >= rad(360)){
+        return x+y-rad(360);
     }
     return x+y;
 }
+
+#endif
