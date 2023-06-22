@@ -17,7 +17,7 @@ void ball_terminal_velocity(){
 	fstream fout;
     fout.open("graph.csv", ios::out | ios::trunc);
 	//timestep(h), time(x), velocity(y)
-	float s = 0.1, tc = 0;
+	float s = 0.01, tc = 0;
 	vec2d vc = vec2dcreate(0,0,0), pc = vec2dcreate(0,0,0);
 	while(tc <= 50.0){//end condition
 		tc += s;

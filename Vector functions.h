@@ -2,6 +2,8 @@
 #include<math.h>
 #include <stdlib.h>
 
+#include "constants.h"
+
 using namespace std;
 #define int long long
 #ifndef Vector_functions_H_
@@ -12,22 +14,31 @@ typedef pair<pf,pf> vec2d; //{{cartesian x, y},{polar d, angle}}
 
 vec2d vec2dcreate(float x, float y, bool c){
     if (c == false){
-        if(y == 0){
-            return {{x,y},{sqrt(pow(abs(x),2)+pow(abs(y),2)),PI/2}};
-        }
         if(x == 0, y == 0){
             return {{x,y},{sqrt(pow(abs(x),2)+pow(abs(y),2)),0}};
         }
-        if(x >= 0 and y >= 0){
+        if(x == 0 and y >= 0){
+            return {{x,y},{sqrt(pow(abs(x),2)+pow(abs(y),2)),0}};
+        }
+        if(x >= 0 and y == 0){
+            return {{x,y},{sqrt(pow(abs(x),2)+pow(abs(y),2)),PI/2}};
+        }
+        if(x == 0, y <= 0){
+            return {{x,y},{sqrt(pow(abs(x),2)+pow(abs(y),2)),PI}};
+        }
+        if(x <= 0, y == 0){
+            return {{x,y},{sqrt(pow(abs(x),2)+pow(abs(y),2)),PI*3/2}};
+        }
+        if(x > 0 and y > 0){
             return {{x,y},{sqrt(pow(abs(x),2)+pow(abs(y),2)),atan(x/y)}};
         }
-        if(x >= 0 and y < 0){
+        if(x > 0 and y < 0){
             return {{x,y},{sqrt(pow(abs(x),2)+pow(abs(y),2)),PI/2-atan(x/y)}};
         }
         if(x < 0 and y < 0){
             return {{x,y},{sqrt(pow(abs(x),2)+pow(abs(y),2)),PI+atan(x/y)}};
         }
-        if(x < 0 and y >= 0){
+        if(x < 0 and y > 0){
             return {{x,y},{sqrt(pow(abs(x),2)+pow(abs(y),2)),PI*3/2-atan(x/y)}};
         }
     }
