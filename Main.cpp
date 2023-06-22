@@ -19,10 +19,10 @@ void ball_terminal_velocity(){
 	//timestep(h), time(x), velocity(y)
 	float s = 0.01, tc = 0;
 	vec2d vc = vec2dcreate(0,0,0), pc = vec2dcreate(0,0,0);
-	while(tc <= 50.0){//end condition
+	while(tc <= 10){//end condition
 		tc += s;
 		vc = rk4(tc, vc, s, fball);
-		fout << tc << ',' << vc.first.first << "\n"; //output graph axis
+		fout << tc << ',' /*<< vc.first.first << ','*/ << vc.first.second << "\n"; //output graph axis
     }
 }
 

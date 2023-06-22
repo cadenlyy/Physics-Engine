@@ -42,9 +42,6 @@ vec2d vec2dcreate(float x, float y, bool c){
             return {{x,y},{sqrt(pow(abs(x),2)+pow(abs(y),2)),PI*3/2-atan(x/y)}};
         }
     }
-    if(y == -1){
-        return {{x*sin(0),x*cos(0)},{x,y}};
-    }
     return {{x*sin(y),x*cos(y)},{x,y}};
 }
 
@@ -54,6 +51,9 @@ vec2d vec2dadd(vec2d x, vec2d y){
 
 vec2d vec2dmulti(vec2d x, vec2d y){
     return vec2dcreate(x.first.first*y.first.first,x.first.second*y.first.second,0);
+}
+vec2d vec2ddivide(vec2d x, vec2d y){
+    return vec2dcreate(x.first.first/y.first.first,x.first.second/y.first.second,0);
 }
 vec2d vec2dsum(vector <vec2d> v){
     vec2d ans = vec2dcreate(0,0,0);

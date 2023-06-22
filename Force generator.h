@@ -19,7 +19,7 @@ vec2d fball(float t, vec2d v){
     vec2d air_resistance = vec2dcreate((p*(2*PI*ball1.radius*ball1.radius)*c*v.second.first*v.second.first)/2,angle_add(v.second.second,PI),1);
     vec2d bouyancy = vec2dcreate(-(p*g*((4/3)*PI*ball1.radius*ball1.radius*ball1.radius)),0,1);
     vec2d force = vec2dadd(vec2dadd(weight,air_resistance),bouyancy);
-    return vec2dcreate(force.second.first/ball1.mass,force.second.second,1);
+    return vec2ddivide(force,vec2dcreate(ball1.mass,ball1.mass,0));
 }
 
 #endif
