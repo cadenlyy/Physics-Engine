@@ -4,9 +4,9 @@ using namespace std;
 #ifndef constants_H_
 #define constants_H_
 
-float p = 1.25;
-float c = 0.5;
-float g = -9.81;
-float PI = 3.14159265358979323846;
+double p = 1.25;
+double c = 0.5;
+double g = -9.81;
+double PI = 3.14159265358979323846;
 
 #endif

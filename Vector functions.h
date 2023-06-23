@@ -9,12 +9,12 @@ using namespace std;
 #ifndef Vector_functions_H_
 #define Vector_functions_H_
 
-typedef pair<float,float> pf;
-typedef pair<pf,pf> vec2d; //{{cartesian x, y},{polar d, angle}}
+typedef pair<double, double> pd;
+typedef pair<pd,pd> vec2d; //{{cartesian x, y},{polar d, angle}}
 
-vec2d vec2dcreate(float x, float y, bool c){
+vec2d vec2dcreate(double x, double y, bool c){
     if (c == false){
-        if(x == 0, y == 0){
+        if(x == 0 and y == 0){
             return {{x,y},{sqrt(pow(abs(x),2)+pow(abs(y),2)),0}};
         }
         if(x == 0 and y >= 0){
@@ -63,7 +63,7 @@ vec2d vec2dsum(vector <vec2d> v){
     return ans;
 }
 
-float angle_add(float x, float y){
+double angle_add(double x, double y){
     if(x+y >= 2*PI){
         return x+y-2*PI;
     }

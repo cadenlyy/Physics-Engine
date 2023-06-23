@@ -9,12 +9,12 @@ using namespace std;
 #ifndef Object_H_
 #define Object_H_
 
-typedef pair<float,float> pf;
-typedef pair<pf,pf> vec2d; //{{cartesian x, y},{polar d, angle}}
+typedef pair<double, double> pd;
+typedef pair<pd,pd> vec2d; //{{cartesian x, y},{polar d, angle}}
 
 class ball{
     public:
-        float mass = 0.2;
-        float radius = 0.05;
+        double mass = 2;
+        double radius = 0.8;
 };
 #endif
