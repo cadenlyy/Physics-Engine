@@ -15,6 +15,6 @@ typedef pair<pd,pd> vec2d; //{{cartesian x, y},{polar d, angle}}
 class ball{
     public:
         double mass = 2;
-        double radius = 0.8;
+        double radius = 0.7;
 };
 #endif

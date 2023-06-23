@@ -31,7 +31,7 @@ void thrown_ball(){
     fout.open("graph.csv", ios::out | ios::trunc);
 	//timestep(h), time(x), velocity(y)
 	double s = 0.0001, tc = 0;
-	vec2d vc = vec2dcreate(10,0,0), pc = vec2dcreate(0,0,0);
+	vec2d vc = vec2dcreate(50,0,0), pc = vec2dcreate(0,0,0);
 	while(tc <= 10){//end condition
 		tc += s;
 		vc = rk4(tc, vc, s, fball);
@@ -41,6 +41,6 @@ void thrown_ball(){
 }
 
 int32_t main() {
-	ball_terminal_velocity();
+	thrown_ball();
 }
 
