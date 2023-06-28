@@ -19,10 +19,11 @@ void ball_terminal_velocity(){
 	//timestep(h), time(x), velocity(y)
 	double s = 0.01, tc = 0;
 	vec2d vc = vec2dcreate(0,0,0), pc = vec2dcreate(0,0,0);
-	while(tc <= 10){//end condition
+	while(vc.first.second != rk4(tc,vc,s,fball).first.second){//end condition
 		tc += s;
 		vc = rk4(tc, vc, s, fball);
-		fout << tc << ',' /*<< vc.first.first << ','*/ << vc.first.second << "\n"; //output graph axis
+		pc = compound_rk4(tc, vc, pc, s, fball);
+		fout << tc << ',' << vc.first.first << ',' << vc.first.second << ',' << pc.first.first << ',' << pc.first.second << "\n"; //output graph axis
     }
 }
 
@@ -36,6 +37,20 @@ void thrown_ball(){
 		tc += s;
 		vc = rk4(tc, vc, s, fball);
 		pc = compound_rk4(tc, vc, pc, s, fball);
+		fout << tc << ',' << vc.first.first << ',' << vc.first.second << ',' << pc.first.first << ',' << pc.first.second << "\n"; //output graph axis
+    }
+}
+
+void pendulum(){
+	fstream fout;
+    fout.open("graph.csv", ios::out | ios::trunc);
+	//timestep(h), time(x), velocity(y)
+	double s = 0.0001, tc = 0;
+	vec2d vc = vec2dcreate(0,0,0), pc = vec2dcreate(0,0,0);
+	while(tc <= 10){//end condition
+		tc += s;
+		vc = rk4(tc, vc, s, fpendulum);
+		pc = compound_rk4(tc, vc, pc, s, fpendulum);
 		fout << tc << ',' << vc.first.first << ',' << vc.first.second << ',' << pc.first.first << ',' << pc.first.second << "\n"; //output graph axis
     }
 }

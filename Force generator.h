@@ -22,4 +22,11 @@ vec2d fball(double t, vec2d v){
     return vec2ddivide(force,vec2dcreate(ball1.mass,ball1.mass,0));
 }
 
+vec2d fpendulum(double t, vec2d v, vec2d p){
+    double ax = -((-g*pow(v.first.first,2)*pow(sin(p.second.second),2))/(pow(p.second.first,2)*pow(cos(p.second.second),2)));
+    double ay = (g*pow(v.first.second,2)*cos(p.second.second))/(pow(p.second.first,2)*sin(p.second.second));
+    return vec2dcreate(ax,ay,0);
+}
+
+
 #endif
