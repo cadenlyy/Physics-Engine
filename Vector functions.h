@@ -12,6 +12,7 @@ using namespace std;
 typedef pair<double, double> pd;
 typedef pair<pd,pd> vec2d; //{{cartesian x, y},{polar d, angle}}
 
+
 vec2d vec2dcreate(double x, double y, bool c){
     if (c == false){
         if(x == 0 and y == 0){
@@ -39,7 +40,7 @@ vec2d vec2dcreate(double x, double y, bool c){
             return {{x,y},{sqrt(pow(abs(x),2)+pow(abs(y),2)),PI+atan(x/y)}};
         }
         if(x < 0 and y > 0){
-            return {{x,y},{sqrt(pow(abs(x),2)+pow(abs(y),2)),PI*3/2-atan(x/y)}};
+            return {{x,y},{sqrt(pow(abs(x),2)+pow(abs(y),2)),PI*2-atan(x/y)}};
         }
     }
     return {{x*sin(y),x*cos(y)},{x,y}};
