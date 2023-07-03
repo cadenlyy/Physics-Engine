@@ -12,23 +12,31 @@ using namespace std;
 typedef pair<double, double> pd;
 typedef pair<pd,pd> vec2d; //{{cartesian x, y},{polar d, angle}}
 
-double rk4(double x, double y, double z,double s, double (*f)(double,double,double)){
-	//time(x), velocity(y), timestep(s), function of acceleration(f)
-	double k1 = f(x,y,z);
-	double k2 = f(x+0.5 * s,y+s*k1*0.5,z+s*k1*0.5);
-	double k3 = f(x+0.5 * s,y+s*k2*0.5,z+s*k2*0.5);
-	double k4 = f(x+s,y+s*k3,z+s*k3);
-	double v = y+s/6*(k1 + 2*k2 + 2*k3 +k4);
-	return v;
+double rk4(double x, vector<double> v,double s, double (*f)(double,vector <double>)){
+	vector <double> vk1, vk2, vk3, vk4;
+
+	double k1 = f(x,v);
+	for(auto i: v) vk1.push_back(i+s*k1*0.5);
+	double k2 = f(x+0.5 * s,v);
+	for(auto i: v) vk2.push_back(i+s*k2*0.5);
+	double k3 = f(x+0.5 * s,vk2);
+	for(auto i: v) vk3.push_back(i+s*k3);
+	double k4 = f(x+s,vk3);
+	double a = v[0]+s/6*(k1 + 2*k2 + 2*k3 +k4);
+	return a;
 }
 
-double compound_rk4(double x, double y, double z, double s, double (*f)(double,double,double)){
-	double k1 = rk4(x, y, z, s, f);
-	double k2 = rk4(x+0.5 * s,y+s*k1*0.5, z+s*k1*0.5, s, f);
-	double k3 = rk4(x+0.5 * s,y+s*k2*0.5, z+s*k2*0.5, s, f);
-	double k4 = rk4(x+s,y+s*k3, z+s*k3, s, f);
-	double v = z+s/6*(k1 + 2*k2 + 2*k3 + k4);
-	return v;
+double compound_rk4(double x, vector<double> v, double s, double (*f)(double,vector<double>)){
+	vector <double> vk1, vk2, vk3, vk4;
+	double k1 = rk4(x, v, s, f);
+	for(auto i: v) vk1.push_back(i+s*k1*0.5);
+	double k2 = rk4(x+0.5 * s, vk1, s, f);
+	for(auto i: v) vk2.push_back(i+s*k2*0.5);
+	double k3 = rk4(x+0.5 * s, vk2, s, f);
+	for(auto i: v) vk3.push_back(i+s*k3);
+	double k4 = rk4(x+s, vk3, s, f);
+	double a = v[1]+s/6*(k1 + 2*k2 + 2*k3 + k4);
+	return a;
 }
 
 #endif
