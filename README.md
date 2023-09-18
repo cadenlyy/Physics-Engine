@@ -1,7 +1,7 @@
 # Physics-Engine
 2D physics engine
 
-Equation based Physics simulator
+Equation based Physics simulator without graphical animation
 
 Uses Runge Kutta(RK4) as an ordinary differential equation(ODE) solver
 
@@ -14,6 +14,6 @@ Contains 4 simulations
   Simple pendulum
   Double pendulum
   
-initial conditions of each simulation has to be changed in the /Object.h file and the simulation being run must be changed under int32_t main in the /Main.cpp file constants can be found and changed in the /constant.h file and vector functions can be found in /Vector_functions.h file
+initial conditions of each simulation has to be changed in the /Object.h file and the simulation being run must be changed under int32_t main in the /Main.cpp file constants can be found and changed in the /constant.h file and vector functions can be found in /Vector_functions.h file. Timestep of simulation can be changed in the /Main.cpp file
 
 
