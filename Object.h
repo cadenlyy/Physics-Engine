@@ -24,7 +24,7 @@ class simple_pendulum{
     public:
         double length = 2;
         double angv = 0;
-        double ang = PI/2;
+        double ang = PI/18*3.3;
         vec2d pos;
 };
 class complex_pendulum{
@@ -33,13 +33,13 @@ class complex_pendulum{
         double length1 = 2;
         double anga1 = 0;
         double angv1 = 0;
-        double ang1 = PI/18;
+        double ang1 = PI/18*3;
         vec2d pos1;
         double mass2 = 2;
         double length2 = 2;
         double anga2 = 0;
         double angv2 = 0;
-        double ang2 = PI/18;
+        double ang2 = PI/18*3;
         vec2d pos2;
 };
 

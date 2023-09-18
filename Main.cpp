@@ -46,12 +46,37 @@ void thrown_ball(){
     }
 }
 
+void single_pendulum_period(){
+	fstream fout;
+    fout.open("graph.csv", ios::out | ios::trunc);
+	double counter =  0.1, countstep = 0.1;
+	while(counter < PI/2){
+		double s = 0.0001, tc = 0;
+		vector<double>v;
+		pendulum1.ang = counter;
+		pendulum1.pos = vec2dcreate(pendulum1.length,PI-pendulum1.ang,1);
+		double c = pendulum1.pos.first.first;
+		c -= 0.001;
+		while(c > pendulum1.pos.first.first or tc < 1){//end condition
+			tc += s;
+			v = {pendulum1.angv, pendulum1.ang};
+			pendulum1.angv = rk4(tc, v, s, fsimple_pendulum);
+			v = {pendulum1.angv, pendulum1.ang};
+			pendulum1.ang = compound_rk4(tc, v, s, fsimple_pendulum);
+			pendulum1.pos = vec2dcreate(pendulum1.length,PI-pendulum1.ang,1);
+			//fout << tc << ',' << pendulum1.angv << ',' << pendulum1.ang << ',' << pendulum1.pos.first.first << ',' << pendulum1.pos.first.second << "\n"; //output graph axis
+		}
+		fout << counter << ',' << tc << "\n";
+		counter += countstep;
+	}
+}
+
 void single_pendulum(){
 	fstream fout;
     fout.open("graph.csv", ios::out | ios::trunc);
 	double s = 0.0001, tc = 0;
 	vector<double>v;
-	while(tc <= 10){//end condition
+	while(tc < 10){//end condition
 		tc += s;
 		v = {pendulum1.angv, pendulum1.ang};
 		pendulum1.angv = rk4(tc, v, s, fsimple_pendulum);
@@ -59,7 +84,7 @@ void single_pendulum(){
 		pendulum1.ang = compound_rk4(tc, v, s, fsimple_pendulum);
 		pendulum1.pos = vec2dcreate(pendulum1.length,PI-pendulum1.ang,1);
 		fout << tc << ',' << pendulum1.angv << ',' << pendulum1.ang << ',' << pendulum1.pos.first.first << ',' << pendulum1.pos.first.second << "\n"; //output graph axis
-    }
+	}
 }
 
 void double_pendulum(){
@@ -67,7 +92,7 @@ void double_pendulum(){
     fout.open("graph.csv", ios::out | ios::trunc);
 	double s = 0.0001, tc = 0;
 	vector<double>v;
-	while(tc <= 10){//end condition
+	while(tc <= 100){//end condition
 		tc += s;
 		v = {pendulum2.angv1, pendulum2.ang1, pendulum2.anga1, pendulum2.angv2, pendulum2.ang2, pendulum2.anga2};
 		pendulum2.anga1 = fdouble_pendulum_1(tc,v);
