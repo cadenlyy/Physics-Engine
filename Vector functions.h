@@ -10,65 +10,65 @@ using namespace std;
 #define Vector_functions_H_
 
 typedef pair<double, double> pd;
-typedef pair<pd,pd> vec2d; //{{cartesian x, y},{polar d, angle}}
+typedef pair<pd,pd> ppd;
 
-
-vec2d vec2dcreate(double x, double y, bool c){
-    if (c == false){
-        if(x == 0 and y == 0){
-            return {{x,y},{sqrt(pow(abs(x),2)+pow(abs(y),2)),0}};
+class vec2d{
+    public:
+        ppd magnitude;
+        ppd calculateMagnitude(double x, double y, bool c){
+            if (c == false){
+                if(x == 0 and y == 0){
+                    return {{x,y},{sqrt(pow(abs(x),2)+pow(abs(y),2)),0}};
+                }
+                if(x == 0 and y >= 0){
+                    return {{x,y},{sqrt(pow(abs(x),2)+pow(abs(y),2)),0}};
+                }
+                if(x >= 0 and y == 0){
+                    return {{x,y},{sqrt(pow(abs(x),2)+pow(abs(y),2)),PI/2}};
+                }
+                if(x == 0, y <= 0){
+                    return {{x,y},{sqrt(pow(abs(x),2)+pow(abs(y),2)),PI}};
+                }
+                if(x <= 0, y == 0){
+                    return {{x,y},{sqrt(pow(abs(x),2)+pow(abs(y),2)),PI*3/2}};
+                }
+                if(x > 0 and y > 0){
+                    return {{x,y},{sqrt(pow(abs(x),2)+pow(abs(y),2)),atan(x/y)}};
+                }
+                if(x > 0 and y < 0){
+                    return {{x,y},{sqrt(pow(abs(x),2)+pow(abs(y),2)),PI/2-atan(x/y)}};
+                }
+                if(x < 0 and y < 0){
+                    return {{x,y},{sqrt(pow(abs(x),2)+pow(abs(y),2)),PI+atan(x/y)}};
+                }
+                if(x < 0 and y > 0){
+                    return {{x,y},{sqrt(pow(abs(x),2)+pow(abs(y),2)),PI*2-atan(x/y)}};
+                }
+            }
+            return {{x*sin(y),x*cos(y)},{x,y}};
         }
-        if(x == 0 and y >= 0){
-            return {{x,y},{sqrt(pow(abs(x),2)+pow(abs(y),2)),0}};
+        ppd vec2dadd(ppd x, ppd y){
+            return calculateMagnitude(x.first.first+y.first.first,x.first.second+y.first.second,0);
         }
-        if(x >= 0 and y == 0){
-            return {{x,y},{sqrt(pow(abs(x),2)+pow(abs(y),2)),PI/2}};
+        ppd vec2dmulti(ppd x, ppd y){
+            return calculateMagnitude(x.first.first*y.first.first,x.first.second*y.first.second,0);
         }
-        if(x == 0, y <= 0){
-            return {{x,y},{sqrt(pow(abs(x),2)+pow(abs(y),2)),PI}};
+        ppd vec2ddivide(ppd x, ppd y){
+            return calculateMagnitude(x.first.first/y.first.first,x.first.second/y.first.second,0);
         }
-        if(x <= 0, y == 0){
-            return {{x,y},{sqrt(pow(abs(x),2)+pow(abs(y),2)),PI*3/2}};
+        ppd vec2dsum(vector <ppd> v){
+            ppd ans = calculateMagnitude(0,0,0);
+            for(auto i: v){
+                ans = vec2dadd(ans,i);
+            }
+            return ans;
         }
-        if(x > 0 and y > 0){
-            return {{x,y},{sqrt(pow(abs(x),2)+pow(abs(y),2)),atan(x/y)}};
+        double angle_add(double x, double y){
+            if(x+y >= 2*PI){
+                return x+y-2*PI;
+            }
+            return x+y;
         }
-        if(x > 0 and y < 0){
-            return {{x,y},{sqrt(pow(abs(x),2)+pow(abs(y),2)),PI/2-atan(x/y)}};
-        }
-        if(x < 0 and y < 0){
-            return {{x,y},{sqrt(pow(abs(x),2)+pow(abs(y),2)),PI+atan(x/y)}};
-        }
-        if(x < 0 and y > 0){
-            return {{x,y},{sqrt(pow(abs(x),2)+pow(abs(y),2)),PI*2-atan(x/y)}};
-        }
-    }
-    return {{x*sin(y),x*cos(y)},{x,y}};
-}
-
-vec2d vec2dadd(vec2d x, vec2d y){
-    return vec2dcreate(x.first.first+y.first.first,x.first.second+y.first.second,0);
-}
-
-vec2d vec2dmulti(vec2d x, vec2d y){
-    return vec2dcreate(x.first.first*y.first.first,x.first.second*y.first.second,0);
-}
-vec2d vec2ddivide(vec2d x, vec2d y){
-    return vec2dcreate(x.first.first/y.first.first,x.first.second/y.first.second,0);
-}
-vec2d vec2dsum(vector <vec2d> v){
-    vec2d ans = vec2dcreate(0,0,0);
-    for(auto i: v){
-        ans = vec2dadd(ans,i);
-    }
-    return ans;
-}
-
-double angle_add(double x, double y){
-    if(x+y >= 2*PI){
-        return x+y-2*PI;
-    }
-    return x+y;
-}
+};
 
 #endif

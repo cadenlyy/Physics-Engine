@@ -9,15 +9,12 @@ using namespace std;
 #ifndef Object_H_
 #define Object_H_
 
-typedef pair<double, double> pd;
-typedef pair<pd,pd> vec2d; //{{cartesian x, y},{polar d, angle}}
-
 class ball{
     public:
-        double mass = 2;
-        double radius = 0.7;
-        vec2d v = vec2dcreate(10,0,0);
-        vec2d pos = vec2dcreate(0,0,0);
+        double mass;
+        double radius;
+        vec2d v;
+        vec2d pos;
 };
 
 class simple_pendulum{

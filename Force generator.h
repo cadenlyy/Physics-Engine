@@ -11,7 +11,7 @@ using namespace std;
 #ifndef Force_generator_H_
 #define Force_generator_H_
 typedef pair<double, double> pd;
-typedef pair<pd,pd> vec2d; //{{cartesian x, y},{polar d, angle}}
+typedef pair<pd,pd> ppd; //{{cartesian x, y},{polar d, angle}}
 
 double fball_y(double t, vector<double> v){
     double weight = ball1.mass*g;

@@ -14,7 +14,7 @@
             "cStandard": "c17",
             "cppStandard": "c++17",
             "intelliSenseMode": "windows-msvc-x64",
-            "compilerPath": "C:/Users/caden/Libraries/TDMGCC/bin/gcc.exe"
+            "compilerPath": "C:/Users/caden/Documents/Libraries/TDMGCC/bin/g++.exe"
         }
     ],
     "version": 4

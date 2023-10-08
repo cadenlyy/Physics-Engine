@@ -2,15 +2,23 @@
 #include<math.h>
 #include <stdlib.h>
 
-
+#include "Vector functions.h"
 
 using namespace std;
 #define int long long
 typedef pair<double,double> pf;
-typedef pair<pf,pf> vec2d; //{{cartesian x, y},{polar d, angle}}
+typedef pair<pf,pf> ppd; //{{cartesian x, y},{polar d, angle}}
+
+class ball{
+    public:
+        double mass = 2;
+        double radius = 0.7;
+        vec2d v;
+};
 
 int32_t main(){
-    vector <int> v = {1,2,3,4}, a;
-    for(auto i: v) a.push_back(i);
-    for(auto i: a) cout << i;
+    vec2d vec;
+    vec.magnitude = vec.calculateMagnitude(0,0,0);
+    ball ball1;
+    ball1.v.magnitude = ball1.v.calculateMagnitude(10,0,0);
 }
