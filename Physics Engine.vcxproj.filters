@@ -45,10 +45,10 @@
     <ClCompile Include="src\Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Physics\Force.cpp">
+    <ClCompile Include="src\Physics\Vec2d.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Physics\Vec2d.cpp">
+    <ClCompile Include="src\Physics\Force.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -938,9 +938,6 @@
     <ClInclude Include="src\Physics\constants.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Physics\Force.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\Physics\Objects.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -948,6 +945,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Physics\Vec2d.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Physics\Force.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

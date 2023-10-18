@@ -22,7 +22,7 @@ static void ball_terminal_velocity (std::queue <ppd>& Positions){
 	while(tc < 10){//end condition
 		tc += s;
 		v = {ball1.v.magnitude.first.second};
-		ball1.v.magnitude.first.second = RK4(tc, v, s, fball_y, 0);
+		ball1.v.magnitude.first.second = RK4<ball>(tc, v, s, ball1, fball_y, 0);
 		v = { ball1.v.magnitude.first.first, ball1.pos.magnitude.first.first};
 		ball1.pos.magnitude.first.first = vec2d::calculateMagnitude(RK4(tc, v, s, fball_x, 1), ball1.pos.magnitude.first.second,0).first.first;
 		v = { ball1.v.magnitude.first.second, ball1.pos.magnitude.first.second };
