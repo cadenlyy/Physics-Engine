@@ -152,7 +152,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Dependencies\glm\detail\glm.cpp" />
-    <ClCompile Include="src\Application\Application.h" />
+    <ClCompile Include="src\Application\Application.cpp" />
     <ClCompile Include="src\Application\Index_buffer.cpp" />
     <ClCompile Include="src\Application\Renderer.cpp" />
     <ClCompile Include="src\Application\Shader.cpp" />

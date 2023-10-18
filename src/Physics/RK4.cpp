@@ -3,7 +3,7 @@
 #include "Vec2d.h"
 
 template<typename T>
-extern double RK4(double x, std::vector<double> v, double s, T object, double (*f)(double, std::vector<double>, T&), int rc) {
+static double RK4(double x, std::vector<double> v, double s, T object, double (*f)(double, std::vector<double>, T), int rc) {
 	std::vector <double> vk1, vk2, vk3;
 	double k1, k2, k3, k4, a;
 

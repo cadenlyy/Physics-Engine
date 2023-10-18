@@ -1,8 +1,8 @@
 #include <thread>
 #include <queue>
 
-#include "Application/Application.h"
-#include "Physics/Physics_Engine.h"
+#include "Application/Application.cpp"
+#include "Physics/Physics_Engine.cpp"
 
 std::queue <ppd> positions;
 
