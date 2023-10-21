@@ -159,7 +159,6 @@
     <ClCompile Include="src\Application\VertexBufferLayout.cpp" />
     <ClCompile Include="src\Application\Vertex_array.cpp" />
     <ClCompile Include="src\Application\Vertex_buffer.cpp" />
-    <ClCompile Include="src\Call_Engine.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\Physics\Force.cpp" />
     <ClCompile Include="src\Physics\Physics_Engine.cpp" />

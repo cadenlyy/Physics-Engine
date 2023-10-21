@@ -7,18 +7,21 @@
 #include "Force.h"
 #include "RK4.cpp"
 
-extern void ball_terminal_velocity (ball& ball1, double s, ppd& Positions){
+extern void test(ball& ball1, double s) {
+	ball1.pos.magnitude = { {0,0},{0,0} };
+	std::cout << ball1.v.magnitude.first.first << ' ' << ball1.v.magnitude.first.second << ' ' << ball1.pos.magnitude.first.first << ' ' << ball1.pos.magnitude.first.second << '\n';
+}
+
+extern void ball_terminal_velocity(ball& ball1, double s) {
 	double  tc = 0;
 	std::vector <double> v = {};
 	tc += s;
-	v = {ball1.v.magnitude.first.second};
+	v = { ball1.v.magnitude.first.second };
 	ball1.v.magnitude.first.second = RK4<ball>(tc, v, s, ball1, fball_y, 0);
-	v = { ball1.v.magnitude.first.first, ball1.pos.magnitude.first.first};
-	ball1.pos.magnitude.first.first = vec2d::calculateMagnitude(RK4<ball>(tc, v, s, ball1, fball_x, 1), ball1.pos.magnitude.first.second,0).first.first;
 	v = { ball1.v.magnitude.first.second, ball1.pos.magnitude.first.second };
-	ball1.pos.magnitude.first.second = vec2d::calculateMagnitude(ball1.pos.magnitude.first.first, RK4<ball>(tc, v, s, ball1, fball_y, 1), 0).first.first;
-	std::cout << ball1.pos.magnitude.first.first << ' ' << ball1.pos.magnitude.first.second;
-	Positions = ball1.pos.magnitude;
+	ball1.pos.magnitude.first.second = RK4<ball>(tc, v, s, ball1, fball_y, 1);
+	std::cout << ball1.v.magnitude.first.first << ' ' << ball1.v.magnitude.first.second << ' ' << ball1.pos.magnitude.first.first << ' ' << ball1.pos.magnitude.first.second << '\n';
+	if (ball1.pos.magnitude.first.second == INFINITY) system("pause");
 }
 
 extern void thrown_ball(ppd& Positions){

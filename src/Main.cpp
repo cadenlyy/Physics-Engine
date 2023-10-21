@@ -1,13 +1,52 @@
 #include <thread>
 #include <queue>
 #include <iostream>
+#include <Windows.h>
 
 #include "Application/Application.h"
 #include "Physics/Physics_Engine.h"
-#include "Call_Engine.cpp"
 #include "Physics/Objects.h"
 
+template <class T>
+extern void Call_Engine(T& object, double ts, void(*f)(T&, double)) {
+	LARGE_INTEGER freq;
+	LARGE_INTEGER t1, t2;
+	double elapsedTime = 0, prevTS = ts;
 
+	QueryPerformanceFrequency(&freq);
+	QueryPerformanceCounter(&t1);
+
+	f(object, ts);
+
+	QueryPerformanceCounter(&t2);
+	elapsedTime = (t2.QuadPart - t1.QuadPart) * 1000.0 / freq.QuadPart /1000;
+
+	while (1) {
+		if (elapsedTime < prevTS) {
+			//std::cout << 'a' << ' ' << elapsedTime << '\n';
+			Sleep(ts * 1000 - elapsedTime);
+			QueryPerformanceFrequency(&freq);
+			QueryPerformanceCounter(&t1);
+
+			f(object, ts);
+
+			QueryPerformanceCounter(&t2);
+			elapsedTime = (t2.QuadPart - t1.QuadPart) * 1000.0 / freq.QuadPart / 1000;
+			prevTS = ts;
+		}
+		else {
+			//std::cout << 'b' << ' ' << elapsedTime << '\n';
+			QueryPerformanceFrequency(&freq);
+			QueryPerformanceCounter(&t1);
+
+			f(object, elapsedTime);
+
+			QueryPerformanceCounter(&t2);
+			elapsedTime = (t2.QuadPart - t1.QuadPart) * 1000.0 / freq.QuadPart / 1000;
+			prevTS = elapsedTime;
+		}
+	}
+}
 
 int main() {
 	/*ts and tfr
@@ -18,9 +57,13 @@ int main() {
 	*/
 	ppd Pos = { {0,0},{0,0} };
 	ball ball1;
-	double ts = 0.01;
-	std::thread physics(Call_Engine<ball>, std::ref(ball1), ts, std::ref(Pos), ball_terminal_velocity);
-	std::thread application(app, std::ref(Pos));
+	ball1.mass = 2;
+	ball1.radius = 0.7;
+	ball1.pos.magnitude = { {0,0},{0,0} };
+	ball1.v.magnitude = { {0,0},{0,0} };
+	double ts = 0.0001;
+	std::thread physics(Call_Engine<ball>, std::ref(ball1), ts, ball_terminal_velocity);
+	std::thread application(app, std::ref(ball1.pos.magnitude));
 	
 	std::cout << "Physics Engine Running.";
 
