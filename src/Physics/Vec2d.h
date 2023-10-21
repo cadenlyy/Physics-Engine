@@ -1,5 +1,7 @@
 #pragma once
 
+#include<vector>
+
 typedef std::pair<double, double> pd;
 typedef std::pair<pd,pd> ppd;
 

@@ -1,40 +1,27 @@
 #include <iostream>
 #include<math.h>
-#include<queue>
-//#include <filesystem>
-//#include <fstream>
 
+#include "Physics_Engine.h"
 #include "constants.h"
 #include "Objects.h"
 #include "Force.h"
 #include "RK4.cpp"
 
-static void ball_terminal_velocity (std::queue <ppd>& Positions){
-	ball ball1;
-	//std::ofstream fout;
-    //fout.open("C:\\Users\\caden\\Documents\\code\\C++\\self\\Physics Engine\\src\\graph.csv", std::ios::trunc);
-	ball1.v.magnitude = ball1.v.calculateMagnitude(10,0,0);
-    ball1.pos.magnitude = ball1.v.calculateMagnitude(0,0,0);
-    ball1.mass = 2;
-    ball1.radius = 0.7;
-	double s = 0.01, tc = 0;
+extern void ball_terminal_velocity (ball& ball1, double s, ppd& Positions){
+	double  tc = 0;
 	std::vector <double> v = {};
-	while(tc < 10){//end condition
-		tc += s;
-		v = {ball1.v.magnitude.first.second};
-		ball1.v.magnitude.first.second = RK4<ball>(tc, v, s, ball1, fball_y, 0);
-		v = { ball1.v.magnitude.first.first, ball1.pos.magnitude.first.first};
-		ball1.pos.magnitude.first.first = vec2d::calculateMagnitude(RK4<ball>(tc, v, s, ball1, fball_x, 1), ball1.pos.magnitude.first.second,0).first.first;
-		v = { ball1.v.magnitude.first.second, ball1.pos.magnitude.first.second };
-		ball1.pos.magnitude.first.second = vec2d::calculateMagnitude(ball1.pos.magnitude.first.first, RK4<ball>(tc, v, s, ball1, fball_y, 1), 0).first.first;
-		//ball1.pos = compound_rk4(tc, ball1.v, ball1.pos, s, fball);
-		//fout << tc << ',' << ball1.v.magnitude.first.first << ',' << ball1.v.magnitude.first.second << "\n"; //output graph axis
-		std::cout << ball1.pos.magnitude.first.first << ' ' << ball1.pos.magnitude.first.second;
-		Positions.push(ball1.pos.magnitude);
-	}
+	tc += s;
+	v = {ball1.v.magnitude.first.second};
+	ball1.v.magnitude.first.second = RK4<ball>(tc, v, s, ball1, fball_y, 0);
+	v = { ball1.v.magnitude.first.first, ball1.pos.magnitude.first.first};
+	ball1.pos.magnitude.first.first = vec2d::calculateMagnitude(RK4<ball>(tc, v, s, ball1, fball_x, 1), ball1.pos.magnitude.first.second,0).first.first;
+	v = { ball1.v.magnitude.first.second, ball1.pos.magnitude.first.second };
+	ball1.pos.magnitude.first.second = vec2d::calculateMagnitude(ball1.pos.magnitude.first.first, RK4<ball>(tc, v, s, ball1, fball_y, 1), 0).first.first;
+	std::cout << ball1.pos.magnitude.first.first << ' ' << ball1.pos.magnitude.first.second;
+	Positions = ball1.pos.magnitude;
 }
 
-static void thrown_ball(std::queue <ppd>& Positions){
+extern void thrown_ball(ppd& Positions){
 	ball ball1;
 	//std::ofstream fout;
     //fout.open("C:\\Users\\caden\\Documents\\code\\C++\\self\\Physics Engine\\graph.csv", std::ios::trunc);
@@ -58,7 +45,7 @@ static void thrown_ball(std::queue <ppd>& Positions){
     }
 }
 
-static void single_pendulum_period(std::queue <ppd>& Positions){
+static void single_pendulum_period(ppd& Positions){
 	simple_pendulum pendulum1;
 	//std::ofstream fout;
     //fout.open("C:\\Users\\caden\\Documents\\code\\C++\\self\\Physics Engine\\graph.csv", std::ios::trunc);
@@ -84,7 +71,7 @@ static void single_pendulum_period(std::queue <ppd>& Positions){
 	}
 }
 
-static void single_pendulum(std::queue <ppd>& Positions){
+static void single_pendulum(ppd& Positions){
 	simple_pendulum pendulum1;
 	//std::ofstream fout;
     //fout.open("C:\\Users\\caden\\Documents\\code\\C++\\self\\Physics Engine\\graph.csv", std::ios::trunc);
@@ -101,7 +88,7 @@ static void single_pendulum(std::queue <ppd>& Positions){
 	}
 }
 
-static void double_pendulum(std::queue <ppd>& Positions){
+static void double_pendulum(ppd& Positions){
 	complex_pendulum pendulum2;
 	//std::ofstream fout;
     //fout.open("C:\\Users\\caden\\Documents\\code\\C++\\self\\Physics Engine\\graph.csv", std::ios::trunc);

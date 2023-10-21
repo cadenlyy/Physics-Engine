@@ -159,6 +159,7 @@
     <ClCompile Include="src\Application\VertexBufferLayout.cpp" />
     <ClCompile Include="src\Application\Vertex_array.cpp" />
     <ClCompile Include="src\Application\Vertex_buffer.cpp" />
+    <ClCompile Include="src\Call_Engine.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\Physics\Force.cpp" />
     <ClCompile Include="src\Physics\Physics_Engine.cpp" />
@@ -453,6 +454,7 @@
     <ClInclude Include="Dependencies\glm\vec3.hpp" />
     <ClInclude Include="Dependencies\glm\vec4.hpp" />
     <ClInclude Include="Dependencies\glm\vector_relational.hpp" />
+    <ClInclude Include="src\Application\Application.h" />
     <ClInclude Include="src\Application\Index_buffer.h" />
     <ClInclude Include="src\Application\Renderer.h" />
     <ClInclude Include="src\Application\Shader.h" />
@@ -462,6 +464,7 @@
     <ClInclude Include="src\Physics\constants.h" />
     <ClInclude Include="src\Physics\Force.h" />
     <ClInclude Include="src\Physics\Objects.h" />
+    <ClInclude Include="src\Physics\Physics_Engine.h" />
     <ClInclude Include="src\Physics\RK4.cpp" />
     <ClInclude Include="src\Physics\Vec2d.h" />
   </ItemGroup>

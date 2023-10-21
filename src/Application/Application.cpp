@@ -7,13 +7,14 @@
 #include <string>
 #include <sstream>
 
+#include "Application.h"
 #include "Renderer.h"
 #include "Vertex_buffer.h"
 #include "Index_buffer.h"
 #include "Vertex_array.h"
 #include "Shader.h"
 
-static int app(){
+extern int app(ppd& pos) {
     GLFWwindow* window;
 
     if (!glfwInit())
@@ -23,7 +24,7 @@ static int app(){
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-   window = glfwCreateWindow(6480, 3860, "Open GL test", NULL, NULL);
+    window = glfwCreateWindow(6480, 3860, "Open GL test", NULL, NULL);
     if (!window)
     {
         glfwTerminate();
@@ -40,17 +41,17 @@ static int app(){
     GLCall(std::cout << glGetString(GL_VERSION) << std::endl);
     {
         float positions[8] = {
-            -0.5f, -0.5f,
-            0.5f, -0.5f,
-            0.5f, 0.5f,
-            -0.5f, 0.5f,
+            pos.first.first - 0.5f, pos.first.second- 0.5f,
+            pos.first.first + 0.5f, pos.first.second - 0.5f,
+            pos.first.first + 0.5f, pos.first.second + 0.5f,
+            pos.first.first -0.5f, pos.first.second + 0.5f,
         };
 
         unsigned int indices[6] = {
             0, 1, 2,
             2, 3, 0
         };
-        
+
         Vertex_Array va;
         Vertex_Buffer vb(positions, 4 * 2 * sizeof(float));
 
@@ -71,16 +72,16 @@ static int app(){
         shader.Unbind();
         vb.Unbind();
         ib.Unbind();
-        
+
         Renderer renderer;
 
-        while (!glfwWindowShouldClose(window)){
+        while (!glfwWindowShouldClose(window)) {
             renderer.Clear();
 
             shader.Bind();
             shader.SetUniform4f("u_Color", 0.0f, 0.3f, 0.8f, 0.1f);
 
-            renderer.Draw(va,ib,shader);
+            renderer.Draw(va, ib, shader);
             GLCall(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr));
 
             glfwSwapBuffers(window);
