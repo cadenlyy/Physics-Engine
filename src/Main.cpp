@@ -55,17 +55,17 @@ int main() {
 		update pos
 	when app finish take most recent value in pos
 	*/
-	ppd Pos = { {0,0},{0,0} };
+	
 	ball ball1;
-	ball1.mass = 2;
+	ball1.mass = 100;
 	ball1.radius = 0.7;
-	ball1.pos.magnitude = { {0,0},{0,0} };
+	ball1.pos.magnitude = vec2d::calculateMagnitude(960/2, 500, 0);;
 	ball1.v.magnitude = { {0,0},{0,0} };
 	double ts = 0.0001;
 	std::thread physics(Call_Engine<ball>, std::ref(ball1), ts, ball_terminal_velocity);
-	std::thread application(app, std::ref(ball1.pos.magnitude));
+	std::thread application(app, &ball1.pos.magnitude);
 	
-	std::cout << "Physics Engine Running.";
+	std::cout << "Physics Engine Running." << "\n";
 
 	physics.join();
 	application.join();

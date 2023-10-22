@@ -2,6 +2,8 @@
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+//#include <ImGUI/imgui.h>
+//#include <ImGUI/imgui_impl_glfw_gl3.h>
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -14,7 +16,7 @@
 #include "Vertex_array.h"
 #include "Shader.h"
 
-extern int app(ppd& pos) {
+extern int app(ppd* pos) {
     GLFWwindow* window;
 
     if (!glfwInit())
@@ -24,7 +26,7 @@ extern int app(ppd& pos) {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-    window = glfwCreateWindow(6480, 3860, "Open GL test", NULL, NULL);
+    window = glfwCreateWindow(960, 540, "Open GL test", NULL, NULL);
     if (!window)
     {
         glfwTerminate();
@@ -41,10 +43,10 @@ extern int app(ppd& pos) {
     GLCall(std::cout << glGetString(GL_VERSION) << std::endl);
     {
         float positions[8] = {
-            pos.first.first - 0.5f, pos.first.second- 0.5f,
-            pos.first.first + 0.5f, pos.first.second - 0.5f,
-            pos.first.first + 0.5f, pos.first.second + 0.5f,
-            pos.first.first -0.5f, pos.first.second + 0.5f,
+            -100.0f, -100.0f,
+            100.0f, -100.0f,
+            100.0f, 100.0f,
+            -100.0f, 100.0f,
         };
 
         unsigned int indices[6] = {
@@ -61,13 +63,13 @@ extern int app(ppd& pos) {
 
         Index_Buffer ib(indices, 6);
 
-        glm::mat4 proj = glm::ortho(-2.0f, 2.0f, -1.5f, 1.5f, -1.0f, 1.0f);
+        glm::mat4 proj = glm::ortho(0.0f, 960.0f, 0.0f, 540.0f, -1.0f, 1.0f);
+        glm::mat4 view = glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0));
 
         Shader shader("res/shaders/Basic.shader");
         shader.Bind();
         shader.SetUniform4f("u_Color", 0.2f, 0.3f, 0.8f, 0.1f);
-        shader.SetUniformMat4f("u_MVP", proj);
-
+        
         va.Unbind();
         shader.Unbind();
         vb.Unbind();
@@ -75,19 +77,46 @@ extern int app(ppd& pos) {
 
         Renderer renderer;
 
+        //IMGUI_CHECKVERSION();
+        //ImGui::CreateContext();
+        //ImGuiIO& io = ImGui::GetIO(); (void)io;
+
+        //ImGui_ImplGlfwGL3_Init(window, true);
+        //ImGui::StyleColorsDark();
+
+        glm::vec3 translation(200, 100, 0);
+
         while (!glfwWindowShouldClose(window)) {
             renderer.Clear();
 
+            //ImGui_ImplGlfwGL3_NewFrame();
+
+            glm::mat4 model = glm::translate(glm::mat4(1.0f), translation);
+            glm::mat4 MVP = proj * view * model;
+
             shader.Bind();
             shader.SetUniform4f("u_Color", 0.0f, 0.3f, 0.8f, 0.1f);
+            shader.SetUniformMat4f("u_MVP", MVP);
 
             renderer.Draw(va, ib, shader);
             GLCall(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr));
+
+            translation = { pos->first.first,pos->first.second,0 };
+
+            /* {
+                ImGui::SliderFloat3("Translation", &translation.x, 0.0f, 960.0f);
+                ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
+            }*/
+
+            //ImGui::Render();
+            //ImGui_ImplGlfwGL3_RenderDrawData(ImGui::GetDrawData());
 
             glfwSwapBuffers(window);
             glfwPollEvents();
         }
     }
+    //ImGui_ImplGlfwGL3_Shutdown();
+    //ImGui::DestroyContext();
     glfwTerminate();
     return 0;
 }
