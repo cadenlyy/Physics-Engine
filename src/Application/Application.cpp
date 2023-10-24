@@ -42,26 +42,35 @@ extern int app(ppd* pos) {
 
     GLCall(std::cout << glGetString(GL_VERSION) << std::endl);
     {
-        float positions[8] = {
-            -100.0f, -100.0f,
-            100.0f, -100.0f,
-            100.0f, 100.0f,
-            -100.0f, 100.0f,
+        const int npos = 7;
+        const int nind = 7;
+        float positions[npos * 2] = {
+            0.0f, 0.0f,
+            -50.0f, 86.603f,
+            -100.0f, 0.0f,
+            -50.0f, -86.603f,
+            50.0f, -86.603f,
+            100.0f, 0.0f,
+            50.0f, 86.603f
         };
 
-        unsigned int indices[6] = {
+        unsigned int indices[nind*3] = {
             0, 1, 2,
-            2, 3, 0
+            0, 2, 3,
+            0, 3, 4,
+            0, 4, 5,
+            0, 5, 6,
+            0, 6, 1
         };
 
         Vertex_Array va;
-        Vertex_Buffer vb(positions, 4 * 2 * sizeof(float));
+        Vertex_Buffer vb(positions, npos * 2 * sizeof(float));
 
         VertexBufferLayout layout;
         layout.Push<float>(2);
         va.AddBuffer(vb, layout);
 
-        Index_Buffer ib(indices, 6);
+        Index_Buffer ib(indices, nind*3);
 
         glm::mat4 proj = glm::ortho(0.0f, 960.0f, 0.0f, 540.0f, -1.0f, 1.0f);
         glm::mat4 view = glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0));
@@ -99,7 +108,7 @@ extern int app(ppd* pos) {
             shader.SetUniformMat4f("u_MVP", MVP);
 
             renderer.Draw(va, ib, shader);
-            GLCall(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr));
+            GLCall(glDrawElements(GL_TRIANGLES, nind, GL_UNSIGNED_INT, nullptr));
 
             translation = { pos->first.first,pos->first.second,0 };
 

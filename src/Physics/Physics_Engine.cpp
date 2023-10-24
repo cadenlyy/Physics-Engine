@@ -8,7 +8,7 @@
 #include "RK4.cpp"
 
 extern void test(ball& ball1, double s) {
-	ball1.pos.magnitude = { {0,0},{0,0} };
+	ball1.pos.magnitude = vec2d::calculateMagnitude(960/2,540/2,0);
 	std::cout << ball1.v.magnitude.first.first << ' ' << ball1.v.magnitude.first.second << ' ' << ball1.pos.magnitude.first.first << ' ' << ball1.pos.magnitude.first.second << '\n';
 }
 
