@@ -63,6 +63,9 @@
     <ClCompile Include="Dependencies\ImGUI\imgui_impl_glfw_gl3.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Application\Shapes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Application\Index_buffer.h">
@@ -987,6 +990,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Dependencies\ImGUI\stb_truetype.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Application\Shapes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

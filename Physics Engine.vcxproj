@@ -160,6 +160,7 @@
     <ClCompile Include="src\Application\Index_buffer.cpp" />
     <ClCompile Include="src\Application\Renderer.cpp" />
     <ClCompile Include="src\Application\Shader.cpp" />
+    <ClCompile Include="src\Application\Shapes.cpp" />
     <ClCompile Include="src\Application\VertexBufferLayout.cpp" />
     <ClCompile Include="src\Application\Vertex_array.cpp" />
     <ClCompile Include="src\Application\Vertex_buffer.cpp" />
@@ -468,6 +469,7 @@
     <ClInclude Include="src\Application\Index_buffer.h" />
     <ClInclude Include="src\Application\Renderer.h" />
     <ClInclude Include="src\Application\Shader.h" />
+    <ClInclude Include="src\Application\Shapes.h" />
     <ClInclude Include="src\Application\VertexBufferLayout.h" />
     <ClInclude Include="src\Application\Vertex_array.h" />
     <ClInclude Include="src\Application\Vertex_buffer.h" />

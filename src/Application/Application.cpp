@@ -15,6 +15,7 @@
 #include "Index_buffer.h"
 #include "Vertex_array.h"
 #include "Shader.h"
+#include "Shapes.h"
 
 extern int app(ppd* pos) {
     GLFWwindow* window;
@@ -26,7 +27,14 @@ extern int app(ppd* pos) {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-    window = glfwCreateWindow(960, 540, "Open GL test", NULL, NULL);
+    const GLFWvidmode* mode = glfwGetVideoMode(glfwGetPrimaryMonitor());
+
+    float window_width = mode->width;
+    float window_height = mode->height;
+
+    //std::cout << "Screen width: " << window_width << ", Screen height : " << window_height << std::endl;
+
+    window = glfwCreateWindow(window_width, window_height, "Open GL test", NULL, NULL);
     if (!window)
     {
         glfwTerminate();
@@ -42,26 +50,20 @@ extern int app(ppd* pos) {
 
     GLCall(std::cout << glGetString(GL_VERSION) << std::endl);
     {
-        const int npos = 7;
-        const int nind = 7;
-        float positions[npos * 2] = {
-            0.0f, 0.0f,
-            -50.0f, 86.603f,
-            -100.0f, 0.0f,
-            -50.0f, -86.603f,
-            50.0f, -86.603f,
-            100.0f, 0.0f,
-            50.0f, 86.603f
-        };
+        const int npos = 100;
+        const int nind = 99;
 
-        unsigned int indices[nind*3] = {
-            0, 1, 2,
-            0, 2, 3,
-            0, 3, 4,
-            0, 4, 5,
-            0, 5, 6,
-            0, 6, 1
-        };
+        std::vector <float> Pos = Shape::vertexOfCircle(100.0f, npos-1);
+        float positions[npos * 2];
+        for (int i = 0; i < npos*2; i++) {
+            positions[i] = Pos[i];
+        }
+
+        std::vector <int> Ind = Shape::indexOfCircle(nind);
+        unsigned int indices[nind * 3];
+        for (int i = 0; i < nind*3; i++) {
+            indices[i] = Ind[i];
+        }
 
         Vertex_Array va;
         Vertex_Buffer vb(positions, npos * 2 * sizeof(float));
@@ -72,7 +74,7 @@ extern int app(ppd* pos) {
 
         Index_Buffer ib(indices, nind*3);
 
-        glm::mat4 proj = glm::ortho(0.0f, 960.0f, 0.0f, 540.0f, -1.0f, 1.0f);
+        glm::mat4 proj = glm::ortho(0.0f, window_width, 0.0f, window_height, -1.0f, 1.0f);
         glm::mat4 view = glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0));
 
         Shader shader("res/shaders/Basic.shader");
