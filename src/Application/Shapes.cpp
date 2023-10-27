@@ -20,8 +20,8 @@ std::vector<float> Shape::vertexOfCircle(float radius, int Sides){
 	return pos;
 }
 
-std::vector<int> Shape::indexOfCircle(int Count){
-	std::vector <int> ind;
+std::vector<unsigned int> Shape::indexOfCircle(int Count){
+	std::vector <unsigned int> ind;
 	for (int i = 1; i <= Count; i++) {
 		if (i != Count) {
 			ind.push_back(0);

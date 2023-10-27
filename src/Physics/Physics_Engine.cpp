@@ -21,7 +21,6 @@ extern void ball_terminal_velocity(ball& ball1, double s) {
 	v = { ball1.v.magnitude.first.second, ball1.pos.magnitude.first.second };
 	ball1.pos.magnitude.first.second = RK4<ball>(tc, v, s, ball1, fball_y, 1);
 	std::cout << ball1.v.magnitude.first.first << ' ' << ball1.v.magnitude.first.second << ' ' << ball1.pos.magnitude.first.first << ' ' << ball1.pos.magnitude.first.second << '\n';
-	if (ball1.pos.magnitude.first.second == INFINITY) system("pause");
 }
 
 extern void thrown_ball(ppd& Positions){

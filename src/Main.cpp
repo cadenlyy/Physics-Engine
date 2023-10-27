@@ -59,14 +59,19 @@ int main() {
 	ball ball1;
 	ball1.mass = 100;
 	ball1.radius = 0.7;
-	ball1.pos.magnitude = vec2d::calculateMagnitude(960/2, 500, 0);;
+	ball1.pos.magnitude = vec2d::calculateMagnitude(15, 17.5, 0);;
 	ball1.v.magnitude = { {0,0},{0,0} };
 	double ts = 0.0001;
-	std::thread physics(Call_Engine<ball>, std::ref(ball1), ts, ball_terminal_velocity);
 	std::thread application(app, &ball1.pos.magnitude);
+	std::thread physics(Call_Engine<ball>, std::ref(ball1), ts, ball_terminal_velocity);
 	
 	std::cout << "Physics Engine Running." << "\n";
 
-	physics.join();
 	application.join();
+	physics.join();
+	
+	
+
+	
+	
 }
