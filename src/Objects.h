@@ -18,21 +18,27 @@ public:
 
 class Ball: public Object{
 public:
-    Ball(ppd Position, ppd Velocity, ppd Acceleration, float Color1, float Color2, float Color3, float Color4, double mass, double radius, int Sides);
+    Ball(ppd Position, ppd Velocity, ppd Acceleration, float Color1, float Color2, float Color3, float Color4, double Mass, double Radius, int Sides);
     double Mass;
     double Radius;
-private:
     int Sides;
     std::vector<float> VertexOfBall(float radius, int Sides);
+private:
     std::vector<unsigned int> IndexOfBall(int Count);
 };
 
-class simple_pendulum{
+class Simple_pendulum: public Object{
 public:
-    double length = 2;
-    double angv = 0;
-    double ang = PI/18*3.3;
-    vec2d pos;
+    Simple_pendulum(ppd AnchorPos, ppd Velo, ppd Acc, float Color1, float Color2, float Color3, float Color4, double Length, double Angv, double Ang, double Radius, int Sides);
+    vec2d AnchorPos;
+    double Length;
+    double Angv;
+    double Ang;
+    double Radius;
+    int Sides;
+    std::vector<float> VertexOfSimplePendulum(float radius, int Sides);
+private:
+    std::vector<unsigned int> IndexOfSimplePendulum(int Count);
 };
 class complex_pendulum{
 public:

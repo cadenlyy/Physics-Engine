@@ -17,8 +17,8 @@ extern double  fball_x(double t, std::vector<double> v, Ball ball1) {
     return air_resistance / ball1.Mass;
 }
 
-extern double  fsimple_pendulum(double t, std::vector<double>v, simple_pendulum pendulum1) {
-    return (g * sin(v[1])) / pendulum1.length;
+extern double  fsimple_pendulum(double t, std::vector<double>v, Simple_pendulum Pendulum1) {
+    return (g * sin(v[1])) / Pendulum1.Length;
 }
 
 extern double fdouble_pendulum_1(double t, std::vector<double>v, complex_pendulum pendulum2) {

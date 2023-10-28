@@ -56,16 +56,16 @@ int main() {
 		update pos
 	when app finish take most recent value in pos
 	*/
-	float color[4] = { 0.2f, 0.3f, 0.8f, 0.1f };
-	Ball Ball1(vec2d::CalculateMagnitude(0, 10, 0), vec2d::CalculateMagnitude(15 , 7.5, 0), { {0,0},{0,0} }, 0.2f, 0.3f, 0.8f, 0.1f, 100, 0.7, 100);
+	//Ball Ball1(vec2d::CalculateMagnitude(10, 10, 0), vec2d::CalculateMagnitude(15 , 7.5, 0), { {0,0},{0,0} }, 0.2f, 0.3f, 0.8f, 0.1f, 100, 0.7, 100);
+	Simple_pendulum Pendulum1(vec2d::CalculateMagnitude(20, 20, 0), vec2d::CalculateMagnitude(0, 0, 0), { {0,0},{0,0} }, 0.2f, 0.3f, 0.8f, 0.1f, 10, 0, PI/2, 0.7, 30);
 	double ts = 0.0001;
-	std::thread application(app, &Ball1);
-	std::thread physics(Call_Engine<Ball>, std::ref(Ball1), ts, thrown_ball);
+	std::thread application(app, &Pendulum1);
+	//std::thread physics(Call_Engine<Simple_pendulum>, std::ref(Pendulum1), ts, single_pendulum);
 	
 	std::cout << "Physics Engine Running." << "\n";
 
 	application.join();
-	physics.join();
+	//physics.join();
 	
 	
 

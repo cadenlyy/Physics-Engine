@@ -9,7 +9,6 @@
 
 extern void test(Ball& Ball1, double s) {
 	Ball1.Position.Magnitude = vec2d::CalculateMagnitude(960/2,540/2,0);
-	std::cout << Ball1.Velocity.Magnitude.first.first << ' ' << Ball1.Velocity.Magnitude.first.second << ' ' << Ball1.Position.Magnitude.first.first << ' ' << Ball1.Position.Magnitude.first.second << '\n';
 }
 
 extern void ball_terminal_velocity(Ball& Ball1, double s) {
@@ -20,7 +19,7 @@ extern void ball_terminal_velocity(Ball& Ball1, double s) {
 	Ball1.Velocity.Magnitude.first.second = RK4<Ball>(tc, v, s, Ball1, fball_y, 0);
 	v = { Ball1.Velocity.Magnitude.first.second, Ball1.Position.Magnitude.first.second };
 	Ball1.Position.Magnitude.first.second = RK4<Ball>(tc, v, s, Ball1, fball_y, 1);
-	std::cout << Ball1.Velocity.Magnitude.first.first << ' ' << Ball1.Velocity.Magnitude.first.second << ' ' << Ball1.Position.Magnitude.first.first << ' ' << Ball1.Position.Magnitude.first.second << '\n';
+	Ball1.VertexPos = Ball1.VertexOfBall(Ball1.Radius, Ball1.Sides);
 }
 
 extern void thrown_ball(Ball& Ball1, double s){
@@ -35,27 +34,27 @@ extern void thrown_ball(Ball& Ball1, double s){
 	Ball1.Position.Magnitude.first.first = RK4<Ball>(tc, v, s, Ball1, fball_x, 1);
 	v = {Ball1.Velocity.Magnitude.first.second, Ball1.Position.Magnitude.first.second};
 	Ball1.Position.Magnitude.first.second = RK4<Ball>(tc, v, s, Ball1, fball_y, 1);
+	Ball1.VertexPos = Ball1.VertexOfBall(Ball1.Radius, Ball1.Sides);
 }
 
-static void single_pendulum_period(ppd& Positions){
-	simple_pendulum pendulum1;
+static void single_pendulum_period(Simple_pendulum pendulum1 ,ppd& Positions){
 	//std::ofstream fout;
     //fout.open("C:\\Users\\caden\\Documents\\code\\C++\\self\\Physics Engine\\graph.csv", std::ios::trunc);
 	double counter =  0.1, countstep = 0.1;
 	while(counter < PI/2){
 		double s = 0.0001, tc = 0;
 		std::vector<double>v;
-		pendulum1.ang = counter;
-		pendulum1.pos.Magnitude = pendulum1.pos.CalculateMagnitude(pendulum1.length,PI-pendulum1.ang,1);
-		double c = pendulum1.pos.Magnitude.first.first;
+		pendulum1.Ang = counter;
+		pendulum1.Position.Magnitude = pendulum1.Position.CalculateMagnitude(pendulum1.Length,PI-pendulum1.Ang,1);
+		double c = pendulum1.Position.Magnitude.first.first;
 		c -= 0.001;
-		while(c > pendulum1.pos.Magnitude.first.first or tc < 1){//end condition
+		while(c > pendulum1.Position.Magnitude.first.first or tc < 1){//end condition
 			tc += s;
-			v = {pendulum1.angv, pendulum1.ang};
-			pendulum1.angv = RK4<simple_pendulum>(tc, v, s, pendulum1, fsimple_pendulum, 0);
-			v = {pendulum1.angv, pendulum1.ang};
-			pendulum1.ang = RK4<simple_pendulum>(tc, v, s, pendulum1, fsimple_pendulum, 1);
-			pendulum1.pos.Magnitude = pendulum1.pos.CalculateMagnitude(pendulum1.length,PI-pendulum1.ang,1);
+			v = {pendulum1.Angv, pendulum1.Ang};
+			pendulum1.Angv = RK4<Simple_pendulum>(tc, v, s, pendulum1, fsimple_pendulum, 0);
+			v = {pendulum1.Angv, pendulum1.Ang};
+			pendulum1.Ang = RK4<Simple_pendulum>(tc, v, s, pendulum1, fsimple_pendulum, 1);
+			pendulum1.Position.Magnitude = pendulum1.Position.CalculateMagnitude(pendulum1.Length,PI-pendulum1.Ang,1);
 			//fout << tc << ',' << pendulum1.angv << ',' << pendulum1.ang << ',' << pendulum1.pos.first.first << ',' << pendulum1.pos.first.second << "\n"; //output graph axis
 		}
 		//fout << counter << ',' << tc << "\n";
@@ -63,21 +62,16 @@ static void single_pendulum_period(ppd& Positions){
 	}
 }
 
-static void single_pendulum(ppd& Positions){
-	simple_pendulum pendulum1;
-	//std::ofstream fout;
-    //fout.open("C:\\Users\\caden\\Documents\\code\\C++\\self\\Physics Engine\\graph.csv", std::ios::trunc);
-	double s = 0.0001, tc = 0;
+extern void single_pendulum(Simple_pendulum& Pendulum1, double s){
+	double tc = 0;
 	std::vector<double>v;
-	while(tc < 10){//end condition
-		tc += s;
-		v = {pendulum1.angv, pendulum1.ang};
-		pendulum1.angv = RK4<simple_pendulum>(tc, v, s, pendulum1, fsimple_pendulum, 0);
-		v = {pendulum1.angv, pendulum1.ang};
-		pendulum1.ang = RK4<simple_pendulum>(tc, v, s, pendulum1, fsimple_pendulum, 1);
-		pendulum1.pos.Magnitude = pendulum1.pos.CalculateMagnitude(pendulum1.length,PI-pendulum1.ang,1);
-		//fout << tc << ',' << pendulum1.angv << ',' << pendulum1.ang << ',' << pendulum1.pos.Magnitude.first.first << ',' << pendulum1.pos.Magnitude.first.second << "\n"; //output graph axis
-	}
+	tc += s;
+	v = {Pendulum1.Angv, Pendulum1.Ang};
+	Pendulum1.Angv = RK4<Simple_pendulum>(tc, v, s, Pendulum1, fsimple_pendulum, 0);
+	v = {Pendulum1.Angv, Pendulum1.Ang};
+	Pendulum1.Ang = RK4<Simple_pendulum>(tc, v, s, Pendulum1, fsimple_pendulum, 1);
+	Pendulum1.Position.Magnitude = vec2d::CalculateMagnitude(Pendulum1.Length+Pendulum1.AnchorPos.Magnitude.second.first,PI-Pendulum1.Ang+ Pendulum1.AnchorPos.Magnitude.second.second,1);
+	Pendulum1.VertexPos = Pendulum1.VertexOfSimplePendulum(Pendulum1.Radius, Pendulum1.Sides);
 }
 
 static void double_pendulum(ppd& Positions){

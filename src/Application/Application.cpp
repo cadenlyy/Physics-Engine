@@ -73,7 +73,7 @@ extern int app(Object* Object1) {
         }
 
         Vertex_Array vaIncr;
-        Vertex_Buffer vbIncr(&PosIncr.front(), PosIncr.size() * sizeof(float));
+        Vertex_Buffer vbIncr(&PosIncr.front(), PosIncr.size() * sizeof(float), "STATIC");
 
         VertexBufferLayout layoutIncr;
         layoutIncr.Push<float>(2);
@@ -97,18 +97,20 @@ extern int app(Object* Object1) {
         std::vector <float> Pos = Object1->VertexPos;
 
         std::vector <unsigned int> Ind = Object1->IndexPos;
+        //std::vector <unsigned int> Ind = { 4,5,6,4,6,7,4,7,5 };
 
         Vertex_Array va;
-        Vertex_Buffer vb(&Pos.front(), (Pos.size()-1) * 2 * sizeof(float));
+        Vertex_Buffer vb(nullptr, Pos.size() * sizeof(float), "DYNAMIC");
 
         VertexBufferLayout layout;
         layout.Push<float>(2);
         va.AddBuffer(vb, layout);
 
-        Index_Buffer ib(&Ind.front(), Ind.size()*3);
+        Index_Buffer ib(&Ind.front(), Ind.size());
 
         glm::mat4 proj = glm::ortho(0.0f, app.Width, 0.0f, app.Height, -1.0f, 1.0f);
         glm::mat4 view = glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0));
+        glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0));
 
         Shader shader("res/shaders/Basic.shader");
         shader.Bind();
@@ -128,8 +130,6 @@ extern int app(Object* Object1) {
         //ImGui_ImplGlfwGL3_Init(window, true);
         //ImGui::StyleColorsDark();
 
-        glm::vec3 translation(200, 100, 0);
-
         while (!glfwWindowShouldClose(window)) {
             renderer.Clear();
 
@@ -140,8 +140,12 @@ extern int app(Object* Object1) {
             shaderIncr.SetUniformMat4f("u_MVP", MVPIncr);
 
             renderer.Draw(vaIncr, ibIncr, shaderIncr);
+            
+            std::vector <float> Pos = Object1->VertexPos;
+            for (auto i : Pos) std::cout << i << '\n';
+            vb.Bind();
+            vb.Sub(&Pos.front(), Pos.size() * sizeof(float));
 
-            glm::mat4 model = glm::translate(glm::mat4(1.0f), translation);
             glm::mat4 MVP = proj * view * model;
             shader.Bind();
             shader.SetUniformMat4f("u_MVP", MVP);
@@ -149,8 +153,6 @@ extern int app(Object* Object1) {
             renderer.Draw(va, ib, shader);
 
             GLCall(glDrawElements(GL_TRIANGLES, Object1->IndexPos.size(), GL_UNSIGNED_INT, nullptr));
-
-            translation = { Object1->Position.Magnitude.first.first*100, Object1->Position.Magnitude.first.second*100,0 };
 
             /* {
                 ImGui::SliderFloat3("Translation", &translation.x, 0.0f, 960.0f);
