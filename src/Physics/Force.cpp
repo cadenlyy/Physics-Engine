@@ -4,17 +4,17 @@
 #include "constants.h"
 #include "Objects.h"
 
-extern double fball_y(double t, std::vector<double> v, ball ball1) {
-    double weight = ball1.mass * g;
-    double air_resistance = (p * (2 * PI * ball1.radius * ball1.radius) * c * v[0] * v[0]) / 2;
-    double bouyancy = -(p * g * ((4 / 3) * PI * ball1.radius * ball1.radius * ball1.radius));
+extern double fball_y(double t, std::vector<double> v, Ball ball1) {
+    double weight = ball1.Mass * g;
+    double air_resistance = (p * (2 * PI * ball1.Radius * ball1.Radius) * c * v[0] * v[0]) / 2;
+    double bouyancy = -(p * g * ((4 / 3) * PI * ball1.Radius * ball1.Radius * ball1.Radius));
     double force = weight + air_resistance + bouyancy;
-    return force / ball1.mass;
+    return force / ball1.Mass;
 }
 
-extern double  fball_x(double t, std::vector<double> v, ball ball1) {
-    double air_resistance = -(p * (2 * PI * ball1.radius * ball1.radius) * c * v[0] * v[0]) / 2;
-    return air_resistance / ball1.mass;
+extern double  fball_x(double t, std::vector<double> v, Ball ball1) {
+    double air_resistance = -(p * (2 * PI * ball1.Radius * ball1.Radius) * c * v[0] * v[0]) / 2;
+    return air_resistance / ball1.Mass;
 }
 
 extern double  fsimple_pendulum(double t, std::vector<double>v, simple_pendulum pendulum1) {

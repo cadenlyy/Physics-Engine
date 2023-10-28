@@ -5,7 +5,8 @@
 
 #include "Application/Application.h"
 #include "Physics/Physics_Engine.h"
-#include "Physics/Objects.h"
+#include "Physics/Vec2d.h"
+#include "Objects.h"
 
 template <class T>
 extern void Call_Engine(T& object, double ts, void(*f)(T&, double)) {
@@ -55,15 +56,11 @@ int main() {
 		update pos
 	when app finish take most recent value in pos
 	*/
-	
-	ball ball1;
-	ball1.mass = 100;
-	ball1.radius = 0.7;
-	ball1.pos.magnitude = vec2d::calculateMagnitude(15, 17.5, 0);;
-	ball1.v.magnitude = { {0,0},{0,0} };
+	float color[4] = { 0.2f, 0.3f, 0.8f, 0.1f };
+	Ball Ball1(vec2d::CalculateMagnitude(0, 10, 0), vec2d::CalculateMagnitude(15 , 7.5, 0), { {0,0},{0,0} }, 0.2f, 0.3f, 0.8f, 0.1f, 100, 0.7, 100);
 	double ts = 0.0001;
-	std::thread application(app, &ball1.pos.magnitude);
-	std::thread physics(Call_Engine<ball>, std::ref(ball1), ts, ball_terminal_velocity);
+	std::thread application(app, &Ball1);
+	std::thread physics(Call_Engine<Ball>, std::ref(Ball1), ts, thrown_ball);
 	
 	std::cout << "Physics Engine Running." << "\n";
 

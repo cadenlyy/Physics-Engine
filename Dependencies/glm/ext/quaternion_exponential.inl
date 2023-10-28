@@ -46,10 +46,10 @@ namespace glm
 			return qua<T, Q>(1,0,0,0);
 
 		//To deal with non-unit quaternions
-		T magnitude = sqrt(x.x * x.x + x.y * x.y + x.z * x.z + x.w *x.w);
+		T Magnitude = sqrt(x.x * x.x + x.y * x.y + x.z * x.z + x.w *x.w);
 
 		T Angle;
-		if(abs(x.w / magnitude) > cos_one_over_two<T>())
+		if(abs(x.w / Magnitude) > cos_one_over_two<T>())
 		{
 			//Scalar component is close to 1; using it to recover angle would lose precision
 			//Instead, we use the non-scalar components since sin() is accurate around 0
@@ -61,18 +61,18 @@ namespace glm
 				return qua<T, Q>(pow(x.w, y), 0, 0, 0);
 			}
 
-			Angle = asin(sqrt(VectorMagnitude) / magnitude);
+			Angle = asin(sqrt(VectorMagnitude) / Magnitude);
 		}
 		else
 		{
 			//Scalar component is small, shouldn't cause loss of precision
-			Angle = acos(x.w / magnitude);
+			Angle = acos(x.w / Magnitude);
 		}
 
 		T NewAngle = Angle * y;
 		T Div = sin(NewAngle) / sin(Angle);
-		T Mag = pow(magnitude, y - static_cast<T>(1));
-		return qua<T, Q>(cos(NewAngle) * magnitude * Mag, x.x * Div * Mag, x.y * Div * Mag, x.z * Div * Mag);
+		T Mag = pow(Magnitude, y - static_cast<T>(1));
+		return qua<T, Q>(cos(NewAngle) * Magnitude * Mag, x.x * Div * Mag, x.y * Div * Mag, x.z * Div * Mag);
 	}
 
 	template<typename T, qualifier Q>

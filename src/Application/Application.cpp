@@ -14,11 +14,13 @@
 #include "Vertex_buffer.h"
 #include "Index_buffer.h"
 #include "Vertex_array.h"
-#include "Shader.h"
-#include "Shapes.h"
+#include "Physics/Vec2d.h"
+#include "Objects.h"
 
-extern int app(ppd* pos) {
+extern int app(Object* Object1) {
     GLFWwindow* window;
+
+    Window app;
 
     if (!glfwInit())
         return -1;
@@ -29,12 +31,11 @@ extern int app(ppd* pos) {
 
     const GLFWvidmode* mode = glfwGetVideoMode(glfwGetPrimaryMonitor());
 
-    float window_width = mode->width;
-    float window_height = mode->height;
 
-    //std::cout << "Screen width: " << window_width << ", Screen height : " << window_height << std::endl;
+    app.Width = mode->width;
+    app.Height = mode->height;
 
-    window = glfwCreateWindow(window_width, window_height, "Open GL test", NULL, NULL);
+    window = glfwCreateWindow(app.Width, app.Height, "Open GL test", NULL, NULL);
     if (!window)
     {
         glfwTerminate();
@@ -52,16 +53,16 @@ extern int app(ppd* pos) {
     {
         //increment lines
         std::vector <float> PosIncr;
-        for (int i = 1; i <= window_width; i+=100) {
+        for (int i = 1; i <= app.Width; i+=100) {
             PosIncr.push_back(i); PosIncr.push_back(0);
-            PosIncr.push_back(i); PosIncr.push_back(window_height);
-            PosIncr.push_back(i + 1.0f); PosIncr.push_back(window_height);
+            PosIncr.push_back(i); PosIncr.push_back(app.Height);
+            PosIncr.push_back(i + 1.0f); PosIncr.push_back(app.Height);
             PosIncr.push_back(i + 1.0f); PosIncr.push_back(0);
         }
-        for (int i = 1; i <= window_height; i+=100) {
+        for (int i = 1; i <= app.Height; i+=100) {
             PosIncr.push_back(0); PosIncr.push_back(i);
-            PosIncr.push_back(window_width); PosIncr.push_back(i);
-            PosIncr.push_back(window_width); PosIncr.push_back(i + 1.0f);
+            PosIncr.push_back(app.Width); PosIncr.push_back(i);
+            PosIncr.push_back(app.Width); PosIncr.push_back(i + 1.0f);
             PosIncr.push_back(0); PosIncr.push_back(i + 1.0f);
         }
 
@@ -69,7 +70,6 @@ extern int app(ppd* pos) {
         for (int i = 0; i < PosIncr.size(); i++) {
             IndexIncr.push_back((4 + i * 4) - 4); IndexIncr.push_back((4 + i * 4) - 3); IndexIncr.push_back((4 + i * 4) - 2);
             IndexIncr.push_back((4 + i * 4) - 4); IndexIncr.push_back((4 + i * 4) - 2); IndexIncr.push_back((4 + i * 4) - 1);
-            std::cout << (4 + i * 4) << '\n';
         }
 
         Vertex_Array vaIncr;
@@ -81,7 +81,7 @@ extern int app(ppd* pos) {
 
         Index_Buffer ibIncr(&IndexIncr.front(), IndexIncr.size());
 
-        glm::mat4 projIncr = glm::ortho(0.0f, window_width, 0.0f, window_height, -1.0f, 1.0f);
+        glm::mat4 projIncr = glm::ortho(0.0f, app.Width, 0.0f, app.Height, -1.0f, 1.0f);
 
         Shader shaderIncr("res/shaders/Basic.shader");
         shaderIncr.Bind();
@@ -93,28 +93,26 @@ extern int app(ppd* pos) {
         ibIncr.Unbind();
 
         //object
-        const int npos = 100;
-        const int nind = 99;
 
-        std::vector <float> Pos = Shape::vertexOfCircle(70.0f, npos-1);
+        std::vector <float> Pos = Object1->VertexPos;
 
-        std::vector <unsigned int> Ind = Shape::indexOfCircle(nind);
+        std::vector <unsigned int> Ind = Object1->IndexPos;
 
         Vertex_Array va;
-        Vertex_Buffer vb(&Pos.front(), npos * 2 * sizeof(float));
+        Vertex_Buffer vb(&Pos.front(), (Pos.size()-1) * 2 * sizeof(float));
 
         VertexBufferLayout layout;
         layout.Push<float>(2);
         va.AddBuffer(vb, layout);
 
-        Index_Buffer ib(&Ind.front(), nind*3);
+        Index_Buffer ib(&Ind.front(), Ind.size()*3);
 
-        glm::mat4 proj = glm::ortho(0.0f, window_width, 0.0f, window_height, -1.0f, 1.0f);
+        glm::mat4 proj = glm::ortho(0.0f, app.Width, 0.0f, app.Height, -1.0f, 1.0f);
         glm::mat4 view = glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0));
 
         Shader shader("res/shaders/Basic.shader");
         shader.Bind();
-        shader.SetUniform4f("u_Color", 0.2f, 0.3f, 0.8f, 0.1f);
+        shader.SetUniform4f("u_Color", Object1->Color[0], Object1->Color[1], Object1->Color[2], Object1->Color[3]);
         
         va.Unbind();
         shader.Unbind();
@@ -150,9 +148,9 @@ extern int app(ppd* pos) {
                 
             renderer.Draw(va, ib, shader);
 
-            GLCall(glDrawElements(GL_TRIANGLES, nind, GL_UNSIGNED_INT, nullptr));
+            GLCall(glDrawElements(GL_TRIANGLES, Object1->IndexPos.size(), GL_UNSIGNED_INT, nullptr));
 
-            translation = { pos->first.first*100,pos->first.second*100,0 };
+            translation = { Object1->Position.Magnitude.first.first*100, Object1->Position.Magnitude.first.second*100,0 };
 
             /* {
                 ImGui::SliderFloat3("Translation", &translation.x, 0.0f, 960.0f);

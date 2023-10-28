@@ -1,12 +1,14 @@
-﻿  Main.cpp
-C:\Users\caden\Documents\code\Real\Physics Engine\src\Main.cpp(27,20): warning C4244: 'argument': conversion from 'double' to 'DWORD', possible loss of data
-C:\Users\caden\Documents\code\Real\Physics Engine\src\Main.cpp(66): message : see reference to function template instantiation 'void Call_Engine<ball>(T &,double,void (__cdecl *)(T &,double))' being compiled
+﻿  Objects.cpp
+C:\Users\caden\Documents\code\Real\Physics Engine\src\Objects.cpp(12,39): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\caden\Documents\code\Real\Physics Engine\src\Objects.cpp(21,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\caden\Documents\code\Real\Physics Engine\src\Objects.cpp(24,24): warning C4244: 'argument': conversion from 'double' to '_Ty', possible loss of data
           with
           [
-              T=ball
+              _Ty=float
           ]
-  Force.cpp
-  Physics_Engine.cpp
-  Vec2d.cpp
-  Generating Code...
+C:\Users\caden\Documents\code\Real\Physics Engine\src\Objects.cpp(25,24): warning C4244: 'argument': conversion from 'double' to '_Ty', possible loss of data
+          with
+          [
+              _Ty=float
+          ]
   Physics Engine.vcxproj -> C:\Users\caden\Documents\code\Real\Physics Engine\x64\Debug\Physics Engine.exe

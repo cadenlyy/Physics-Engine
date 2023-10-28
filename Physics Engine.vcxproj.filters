@@ -63,7 +63,7 @@
     <ClCompile Include="Dependencies\ImGUI\imgui_impl_glfw_gl3.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Application\Shapes.cpp">
+    <ClCompile Include="src\Objects.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -953,7 +953,7 @@
     <ClInclude Include="src\Physics\constants.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Physics\Objects.h">
+    <ClInclude Include="src\Objects.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Physics\RK4.cpp">
@@ -990,9 +990,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Dependencies\ImGUI\stb_truetype.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Application\Shapes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

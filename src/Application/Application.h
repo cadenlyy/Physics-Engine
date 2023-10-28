@@ -1,6 +1,11 @@
 #pragma once
 
-typedef std::pair<double, double> pd;
-typedef std::pair<pd, pd> ppd;
+#include "Physics/Vec2d.h"
+#include "Objects.h"
 
-extern int app(ppd* pos);
+struct Window {
+	float Width;
+	float Height;
+};
+
+extern int app(Object* Object1);
