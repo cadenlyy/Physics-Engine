@@ -74,29 +74,24 @@ extern void single_pendulum(Simple_pendulum& Pendulum1, double s){
 	Pendulum1.VertexPos = Pendulum1.VertexOfSimplePendulum(Pendulum1.Radius, Pendulum1.Sides);
 }
 
-static void double_pendulum(ppd& Positions){
-	complex_pendulum pendulum2;
-	//std::ofstream fout;
-    //fout.open("C:\\Users\\caden\\Documents\\code\\C++\\self\\Physics Engine\\graph.csv", std::ios::trunc);
-	double s = 0.0001, tc = 0;
+extern void double_pendulum(Complex_pendulum& Pendulum2, double s){
+	double tc = 0;
 	std::vector<double>v;
-	while(tc <= 100){//end condition
-		tc += s;
-		v = {pendulum2.angv1, pendulum2.ang1, pendulum2.anga1, pendulum2.angv2, pendulum2.ang2, pendulum2.anga2};
-		pendulum2.anga1 = fdouble_pendulum_1(tc,v,pendulum2);
-		v = {pendulum2.angv2, pendulum2.ang2, pendulum2.anga2, pendulum2.angv1, pendulum2.ang1, pendulum2.anga1};
-		pendulum2.anga2 = fdouble_pendulum_2(tc,v, pendulum2);
-		v = {pendulum2.angv1, pendulum2.ang1, pendulum2.anga1, pendulum2.angv2, pendulum2.ang2, pendulum2.anga2};
-		pendulum2.angv1 = RK4<complex_pendulum>(tc, v, s, pendulum2, fdouble_pendulum_1, 0);
-		v = {pendulum2.angv2, pendulum2.ang2, pendulum2.anga2, pendulum2.angv1, pendulum2.ang1, pendulum2.anga1};
-		pendulum2.angv2 = RK4<complex_pendulum>(tc, v, s, pendulum2, fdouble_pendulum_2, 0);
-		v = {pendulum2.angv1, pendulum2.ang1, pendulum2.anga1, pendulum2.angv2, pendulum2.ang2, pendulum2.anga2};
-		pendulum2.ang1 = RK4<complex_pendulum>(tc, v, s, pendulum2, fdouble_pendulum_1, 1);
-		v = {pendulum2.angv2, pendulum2.ang2, pendulum2.anga2, pendulum2.angv1, pendulum2.ang1, pendulum2.anga1};
-		pendulum2.ang2 = RK4<complex_pendulum>(tc, v, s, pendulum2, fdouble_pendulum_2, 1);
-		pendulum2.pos1.Magnitude = pendulum2.pos1.CalculateMagnitude(pendulum2.length1,PI-pendulum2.ang1,1);
-		pendulum2.pos2.Magnitude = pendulum2.pos2.CalculateMagnitude(pendulum2.pos1.Magnitude.first.first+pendulum2.length2*sin(pendulum2.ang2),pendulum2.pos1.Magnitude.first.second-pendulum2.length2*cos(pendulum2.ang2),0);
-		//fout << tc << ',' << pendulum2.angv1 << ','  << pendulum2.angv2 << ',' << pendulum2.ang1 << ',' << pendulum2.ang2 << ',' << pendulum2.pos1.Magnitude.first.first << ',' << pendulum2.pos1.Magnitude.first.second << ',' << pendulum2.pos2.Magnitude.first.first << ',' << pendulum2.pos2.Magnitude.first.second << "\n"; //output graph axis
-    }
+	tc += s;
+	v = {Pendulum2.Angv, Pendulum2.Ang, Pendulum2.Anga, Pendulum2.Angv2, Pendulum2.Ang2, Pendulum2.Anga2};
+	Pendulum2.Anga = fdouble_pendulum_1(tc,v,Pendulum2);
+	v = {Pendulum2.Angv2, Pendulum2.Ang2, Pendulum2.Anga2, Pendulum2.Angv, Pendulum2.Ang, Pendulum2.Anga};
+	Pendulum2.Anga2 = fdouble_pendulum_2(tc,v, Pendulum2);
+	v = {Pendulum2.Angv, Pendulum2.Ang, Pendulum2.Anga, Pendulum2.Angv2, Pendulum2.Ang2, Pendulum2.Anga2};
+	Pendulum2.Angv = RK4<Complex_pendulum>(tc, v, s, Pendulum2, fdouble_pendulum_1, 0);
+	v = {Pendulum2.Angv2, Pendulum2.Ang2, Pendulum2.Anga2, Pendulum2.Angv, Pendulum2.Ang, Pendulum2.Anga};
+	Pendulum2.Angv2 = RK4<Complex_pendulum>(tc, v, s, Pendulum2, fdouble_pendulum_2, 0);
+	v = {Pendulum2.Angv, Pendulum2.Ang, Pendulum2.Anga, Pendulum2.Angv2, Pendulum2.Ang2, Pendulum2.Anga2};
+	Pendulum2.Ang = RK4<Complex_pendulum>(tc, v, s, Pendulum2, fdouble_pendulum_1, 1);
+	v = {Pendulum2.Angv2, Pendulum2.Ang2, Pendulum2.Anga2, Pendulum2.Angv, Pendulum2.Ang, Pendulum2.Anga};
+	Pendulum2.Ang2 = RK4<Complex_pendulum>(tc, v, s, Pendulum2, fdouble_pendulum_2, 1);
+	Pendulum2.Position.Magnitude = vec2d::CalculateMagnitude(Pendulum2.AnchorPos.Magnitude.first.first + Pendulum2.Length * sin(Pendulum2.Ang), Pendulum2.AnchorPos.Magnitude.first.second - Pendulum2.Length * cos(Pendulum2.Ang), 0);
+	Pendulum2.Position2.Magnitude = vec2d::CalculateMagnitude(Pendulum2.Position.Magnitude.first.first + Pendulum2.Length2 * sin(Pendulum2.Ang2), Pendulum2.Position.Magnitude.first.second - Pendulum2.Length2 * cos(Pendulum2.Ang2), 0);
+	Pendulum2.VertexPos = Pendulum2.VertexOfComplexPendulum(Pendulum2.Radius, Pendulum2.Radius2, Pendulum2.Sides);
 }
 

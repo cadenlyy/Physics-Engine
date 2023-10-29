@@ -10,4 +10,4 @@ extern void ball_terminal_velocity(Ball& ball1, double s);
 extern void thrown_ball(Ball& ball1, double s);
 static void single_pendulum_period(Simple_pendulum pendulum1, ppd& Positions);
 extern void single_pendulum(Simple_pendulum& Pendulum1, double s);
-static void double_pendulum(ppd& Positions);
+extern void double_pendulum(Complex_pendulum& Pendulum2, double s);

@@ -106,6 +106,7 @@ extern int app(Object* Object1) {
         std::vector <float> Pos = Object1->VertexPos;//defining the vector for vertex positions
 
         std::vector <unsigned int> Ind = Object1->IndexPos;//defining the vector for vertex positions
+        //std::vector <unsigned int> Ind = { 6 + 8,6 + 9,6 + 10 };
 
         Vertex_Array va;
         Vertex_Buffer vb(nullptr, Pos.size() * sizeof(float), "DYNAMIC");//creates a dynamic vertex buffer without any values

@@ -40,18 +40,31 @@ public:
 private:
     std::vector<unsigned int> IndexOfSimplePendulum(int Count);
 };
-class complex_pendulum{
+class Complex_pendulum: public Object{
 public:
-    double mass1 = 2;
-    double length1 = 2;
-    double anga1 = 0;
-    double angv1 = 0;
-    double ang1 = PI/18*3;
-    vec2d pos1;
-    double mass2 = 2;
-    double length2 = 2;
-    double anga2 = 0;
-    double angv2 = 0;
-    double ang2 = PI/18*3;
-    vec2d pos2;
+    Complex_pendulum(ppd AnchorPos, ppd Velo, ppd Acc, float Color1, float Color2, float Color3, float Color4, double Mass, double Length, double Anga, double Angv, double Ang, double Radius, ppd Velo2, ppd Acc2, double Mass2, double Length2, double Anga2, double Angv2, double Ang2, double Radius2, int Sides);
+
+    vec2d AnchorPos;
+
+    double Mass;
+    double Length;
+    double Anga;
+    double Angv;
+    double Ang;
+    double Radius;
+    
+    vec2d Position2;
+    vec2d Velocity2;
+    vec2d Acceleration2;
+    double Mass2;
+    double Length2;
+    double Anga2;
+    double Angv2;
+    double Ang2;
+    double Radius2;
+
+    int Sides;
+    std::vector<float> VertexOfComplexPendulum(float radius, float radius2, int Sides);
+private:
+    std::vector<unsigned int> IndexOfComplexPendulum(int Count);
 };
