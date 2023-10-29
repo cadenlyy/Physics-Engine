@@ -1,132 +1,40 @@
-﻿  Objects.cpp
-C:\Users\caden\Documents\code\Real\Physics Engine\src\Objects.cpp(14,39): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\caden\Documents\code\Real\Physics Engine\src\Objects.cpp(21,47): warning C4244: 'argument': conversion from '_Ty1' to '_Ty', possible loss of data
+﻿  Application.cpp
+C:\Users\caden\Documents\code\Real\Physics Engine\src\Application\Application.cpp(35,21): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
+C:\Users\caden\Documents\code\Real\Physics Engine\src\Application\Application.cpp(36,22): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
+C:\Users\caden\Documents\code\Real\Physics Engine\src\Application\Application.cpp(39,45): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\caden\Documents\code\Real\Physics Engine\src\Application\Application.cpp(39,34): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\caden\Documents\code\Real\Physics Engine\src\Application\Application.cpp(63,31): warning C4244: 'argument': conversion from 'int' to '_Ty', possible loss of data
           with
-          [
-              _Ty1=double
-          ]
-          and
           [
               _Ty=float
           ]
-C:\Users\caden\Documents\code\Real\Physics Engine\src\Objects.cpp(22,48): warning C4244: 'argument': conversion from '_Ty2' to '_Ty', possible loss of data
+C:\Users\caden\Documents\code\Real\Physics Engine\src\Application\Application.cpp(64,31): warning C4244: 'argument': conversion from 'int' to '_Ty', possible loss of data
           with
-          [
-              _Ty2=double
-          ]
-          and
           [
               _Ty=float
           ]
-C:\Users\caden\Documents\code\Real\Physics Engine\src\Objects.cpp(23,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\caden\Documents\code\Real\Physics Engine\src\Objects.cpp(26,52): warning C4244: 'argument': conversion from '_Ty1' to '_Ty', possible loss of data
+C:\Users\caden\Documents\code\Real\Physics Engine\src\Application\Application.cpp(71,53): warning C4244: 'argument': conversion from 'int' to '_Ty', possible loss of data
           with
-          [
-              _Ty1=double
-          ]
-          and
           [
               _Ty=float
           ]
-C:\Users\caden\Documents\code\Real\Physics Engine\src\Objects.cpp(27,53): warning C4244: 'argument': conversion from '_Ty2' to '_Ty', possible loss of data
+C:\Users\caden\Documents\code\Real\Physics Engine\src\Application\Application.cpp(72,61): warning C4244: 'argument': conversion from 'int' to '_Ty', possible loss of data
           with
-          [
-              _Ty2=double
-          ]
-          and
           [
               _Ty=float
           ]
-C:\Users\caden\Documents\code\Real\Physics Engine\src\Objects.cpp(62,71): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\caden\Documents\code\Real\Physics Engine\src\Objects.cpp(68,48): warning C4244: 'argument': conversion from '_Ty1' to '_Ty', possible loss of data
+C:\Users\caden\Documents\code\Real\Physics Engine\src\Application\Application.cpp(85,88): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\caden\Documents\code\Real\Physics Engine\src\Application\Application.cpp(91,65): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\caden\Documents\code\Real\Physics Engine\src\Application\Application.cpp(111,72): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\caden\Documents\code\Real\Physics Engine\src\Application\Application.cpp(117,49): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\caden\Documents\code\Real\Physics Engine\src\Application\Application.cpp(145,78): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\caden\Documents\code\Real\Physics Engine\src\Application\Application.cpp(153,13): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+  Main.cpp
+C:\Users\caden\Documents\code\Real\Physics Engine\src\Main.cpp(27,20): warning C4244: 'argument': conversion from 'double' to 'DWORD', possible loss of data
+C:\Users\caden\Documents\code\Real\Physics Engine\src\Main.cpp(55): message : see reference to function template instantiation 'void Call_Engine<Simple_pendulum>(T &,double,void (__cdecl *)(T &,double))' being compiled
           with
           [
-              _Ty1=double
+              T=Simple_pendulum
           ]
-          and
-          [
-              _Ty=float
-          ]
-C:\Users\caden\Documents\code\Real\Physics Engine\src\Objects.cpp(69,49): warning C4244: 'argument': conversion from '_Ty2' to '_Ty', possible loss of data
-          with
-          [
-              _Ty2=double
-          ]
-          and
-          [
-              _Ty=float
-          ]
-C:\Users\caden\Documents\code\Real\Physics Engine\src\Objects.cpp(70,54): warning C4244: 'argument': conversion from '_Ty1' to '_Ty', possible loss of data
-          with
-          [
-              _Ty1=double
-          ]
-          and
-          [
-              _Ty=float
-          ]
-C:\Users\caden\Documents\code\Real\Physics Engine\src\Objects.cpp(71,55): warning C4244: 'argument': conversion from '_Ty2' to '_Ty', possible loss of data
-          with
-          [
-              _Ty2=double
-          ]
-          and
-          [
-              _Ty=float
-          ]
-C:\Users\caden\Documents\code\Real\Physics Engine\src\Objects.cpp(72,53): warning C4244: 'argument': conversion from '_Ty1' to '_Ty', possible loss of data
-          with
-          [
-              _Ty1=double
-          ]
-          and
-          [
-              _Ty=float
-          ]
-C:\Users\caden\Documents\code\Real\Physics Engine\src\Objects.cpp(73,54): warning C4244: 'argument': conversion from '_Ty2' to '_Ty', possible loss of data
-          with
-          [
-              _Ty2=double
-          ]
-          and
-          [
-              _Ty=float
-          ]
-C:\Users\caden\Documents\code\Real\Physics Engine\src\Objects.cpp(74,47): warning C4244: 'argument': conversion from '_Ty1' to '_Ty', possible loss of data
-          with
-          [
-              _Ty1=double
-          ]
-          and
-          [
-              _Ty=float
-          ]
-C:\Users\caden\Documents\code\Real\Physics Engine\src\Objects.cpp(75,48): warning C4244: 'argument': conversion from '_Ty2' to '_Ty', possible loss of data
-          with
-          [
-              _Ty2=double
-          ]
-          and
-          [
-              _Ty=float
-          ]
-C:\Users\caden\Documents\code\Real\Physics Engine\src\Objects.cpp(76,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\caden\Documents\code\Real\Physics Engine\src\Objects.cpp(79,54): warning C4244: 'argument': conversion from '_Ty1' to '_Ty', possible loss of data
-          with
-          [
-              _Ty1=double
-          ]
-          and
-          [
-              _Ty=float
-          ]
-C:\Users\caden\Documents\code\Real\Physics Engine\src\Objects.cpp(80,55): warning C4244: 'argument': conversion from '_Ty2' to '_Ty', possible loss of data
-          with
-          [
-              _Ty2=double
-          ]
-          and
-          [
-              _Ty=float
-          ]
+  Generating Code...
   Physics Engine.vcxproj -> C:\Users\caden\Documents\code\Real\Physics Engine\x64\Debug\Physics Engine.exe

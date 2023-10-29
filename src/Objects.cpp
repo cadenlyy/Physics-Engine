@@ -65,14 +65,14 @@ Simple_pendulum::Simple_pendulum(ppd AnchorPos, ppd Velo, ppd Acc, float Color1,
 std::vector<float> Simple_pendulum::VertexOfSimplePendulum(float radius, int Sides) {
 	float Radius = radius * 100;
 	std::vector <float> pos;
-	pos.push_back(AnchorPos.Magnitude.first.first * 100);
-	pos.push_back(AnchorPos.Magnitude.first.second * 100);
-	pos.push_back(AnchorPos.Magnitude.first.first * 100 + 2.0f);
-	pos.push_back(AnchorPos.Magnitude.first.second * 100 + 2.0f);
-	pos.push_back(Position.Magnitude.first.first * 100 + 2.0f);
-	pos.push_back(Position.Magnitude.first.second * 100 + 2.0f);
-	pos.push_back(Position.Magnitude.first.first * 100);
-	pos.push_back(Position.Magnitude.first.second * 100);
+	pos.push_back(AnchorPos.Magnitude.first.first * 100 + 1.0f * cos(PI / 2 + Ang));
+	pos.push_back(AnchorPos.Magnitude.first.second * 100 + 1.0f * sin(PI / 2 + Ang));
+	pos.push_back(AnchorPos.Magnitude.first.first * 100 + 1.0f * sin(PI / 2 - Ang));
+	pos.push_back(AnchorPos.Magnitude.first.second * 100 + 1.0f * cos(PI / 2 - Ang));
+	pos.push_back(Position.Magnitude.first.first * 100 - 1.0f * sin(PI / 2 - Ang));
+	pos.push_back(Position.Magnitude.first.second * 100 - 1.0f * cos(PI / 2 - Ang));
+	pos.push_back(Position.Magnitude.first.first * 100 - 1.0f * cos(PI / 2 + Ang));
+	pos.push_back(Position.Magnitude.first.second * 100 - 1.0f * sin(PI / 2 + Ang));
 	float BaseAng = 2 * PI / Sides;
 	float ang = 0;
 	for (int i = 0; i < Sides; i++) {
@@ -86,7 +86,7 @@ std::vector<float> Simple_pendulum::VertexOfSimplePendulum(float radius, int Sid
 std::vector<unsigned int> Simple_pendulum::IndexOfSimplePendulum(int Count) {
 	std::vector <unsigned int> ind;
 	ind.push_back(0); ind.push_back(1); ind.push_back(2); ind.push_back(0); ind.push_back(2); ind.push_back(3);
-	for (int i = 5; i <= Count+3; i++) {
+	for (int i = 5; i <= Count + 3; i++) {
 		if (i != Count+3) {
 			ind.push_back(4);
 			ind.push_back(i);

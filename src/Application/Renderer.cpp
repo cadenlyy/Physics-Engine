@@ -3,11 +3,11 @@
 
 #include "Renderer.h"
 
-void GLClearError() {
+void GLClearError() { //clearing errors
     while (glGetError() != GL_NO_ERROR);
 }
 
-bool GLLogError(const char* func, const char* file, int line) {
+bool GLLogError(const char* func, const char* file, int line) {//outputing errors
     while (GLenum error = glGetError()) {
         std::cout << "[OpenGL error] (" << error << "): " << file << " (line: " << line << "): " << func << std::endl;
         return false;

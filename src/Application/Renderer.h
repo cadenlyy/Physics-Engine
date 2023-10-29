@@ -8,6 +8,7 @@
 
 
 #define ASSERT(x) if(!(x)) __debugbreak();
+//asserting at line where there is errors
 #define GLCall(x) GLClearError();\
     x;\
     ASSERT(GLLogError(#x, __FILE__, __LINE__));

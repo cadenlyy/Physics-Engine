@@ -3,6 +3,7 @@
 #include "Physics/Vec2d.h"
 #include "Objects.h"
 
+//window properties
 struct Window {
 	float Width;
 	float Height;
