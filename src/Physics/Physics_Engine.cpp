@@ -70,7 +70,7 @@ extern void single_pendulum(Simple_pendulum& Pendulum1, double s){
 	Pendulum1.Angv = RK4<Simple_pendulum>(tc, v, s, Pendulum1, fsimple_pendulum, 0);
 	v = {Pendulum1.Angv, Pendulum1.Ang};
 	Pendulum1.Ang = RK4<Simple_pendulum>(tc, v, s, Pendulum1, fsimple_pendulum, 1);
-	Pendulum1.Position.Magnitude = vec2d::CalculateMagnitude(Pendulum1.Length+Pendulum1.AnchorPos.Magnitude.second.first,PI-Pendulum1.Ang+ Pendulum1.AnchorPos.Magnitude.second.second,1);
+	Pendulum1.Position.Magnitude = vec2d::CalculateMagnitude(Pendulum1.AnchorPos.Magnitude.first.first + Pendulum1.Length * sin(Pendulum1.Ang), Pendulum1.AnchorPos.Magnitude.first.second - Pendulum1.Length * cos(Pendulum1.Ang), 0);
 	Pendulum1.VertexPos = Pendulum1.VertexOfSimplePendulum(Pendulum1.Radius, Pendulum1.Sides);
 }
 

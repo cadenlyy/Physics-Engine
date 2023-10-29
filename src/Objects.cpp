@@ -49,7 +49,7 @@ std::vector<unsigned int> Ball::IndexOfBall(int Count) {
 
 Simple_pendulum::Simple_pendulum(ppd AnchorPos, ppd Velo, ppd Acc, float Color1, float Color2, float Color3, float Color4, double Length, double Angv, double Ang, double Radius, int Sides){
 	Simple_pendulum::AnchorPos.Magnitude = AnchorPos;
-	Simple_pendulum::Position.Magnitude = vec2d::CalculateMagnitude(Simple_pendulum::AnchorPos.Magnitude.first.first + Length * sin(Ang), Simple_pendulum::AnchorPos.Magnitude.first.second + Length * cos(Ang), 0);
+	Simple_pendulum::Position.Magnitude = vec2d::CalculateMagnitude(Simple_pendulum::AnchorPos.Magnitude.first.first + Length * sin(Ang), Simple_pendulum::AnchorPos.Magnitude.first.second - Length * cos(Ang), 0);
 	Simple_pendulum::Velocity.Magnitude = Velo;
 	Simple_pendulum::Acceleration.Magnitude = Acc;
 	Simple_pendulum::Length = Length;
@@ -67,10 +67,10 @@ std::vector<float> Simple_pendulum::VertexOfSimplePendulum(float radius, int Sid
 	std::vector <float> pos;
 	pos.push_back(AnchorPos.Magnitude.first.first * 100);
 	pos.push_back(AnchorPos.Magnitude.first.second * 100);
-	pos.push_back(AnchorPos.Magnitude.first.first * 100 + 1.0f);
-	pos.push_back(AnchorPos.Magnitude.first.second * 100 + 1.0f);
-	pos.push_back(Position.Magnitude.first.first * 100 + 1.0f);
-	pos.push_back(Position.Magnitude.first.second * 100 + 1.0f);
+	pos.push_back(AnchorPos.Magnitude.first.first * 100 + 2.0f);
+	pos.push_back(AnchorPos.Magnitude.first.second * 100 + 2.0f);
+	pos.push_back(Position.Magnitude.first.first * 100 + 2.0f);
+	pos.push_back(Position.Magnitude.first.second * 100 + 2.0f);
 	pos.push_back(Position.Magnitude.first.first * 100);
 	pos.push_back(Position.Magnitude.first.second * 100);
 	float BaseAng = 2 * PI / Sides;

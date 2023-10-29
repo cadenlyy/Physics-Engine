@@ -142,7 +142,6 @@ extern int app(Object* Object1) {
             renderer.Draw(vaIncr, ibIncr, shaderIncr);
             
             std::vector <float> Pos = Object1->VertexPos;
-            for (auto i : Pos) std::cout << i << '\n';
             vb.Bind();
             vb.Sub(&Pos.front(), Pos.size() * sizeof(float));
 
