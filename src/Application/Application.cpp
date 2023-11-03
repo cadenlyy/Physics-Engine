@@ -3,6 +3,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <iostream>
+#include <Windows.h>
 #include <fstream>
 #include <string>
 #include <sstream>
@@ -133,6 +134,14 @@ extern int app(Object* Object1) {
         Renderer renderer;
 
         while (!glfwWindowShouldClose(window)) {
+
+            LARGE_INTEGER freq;
+            LARGE_INTEGER t1, t2;
+            double elapsedTime = 0;
+
+            QueryPerformanceFrequency(&freq);
+            QueryPerformanceCounter(&t1);
+
             renderer.Clear(); //clearing screen
 
             glm::mat4 MVPIncr = projIncr;//creating MVP matrix for increment line(only have Projection and the lines dont move so there is no need for model and there in no camera now so there is no need for view)
@@ -155,6 +164,12 @@ extern int app(Object* Object1) {
 
             glfwSwapBuffers(window);
             glfwPollEvents();
+
+            QueryPerformanceCounter(&t2);
+            elapsedTime = (t2.QuadPart - t1.QuadPart) * 1000.0 / freq.QuadPart / 1000;
+            int FPS = 1 / elapsedTime;
+            elapsedTime = 0;
+            std::cout << FPS << std::endl;
         }
     }
     glfwTerminate();//stopping the app

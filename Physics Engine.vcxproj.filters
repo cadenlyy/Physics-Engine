@@ -944,7 +944,7 @@
     <ClInclude Include="src\Objects.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Physics\RK4.cpp">
+    <ClInclude Include="src\Physics\ODES.cpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Physics\Vec2d.h">

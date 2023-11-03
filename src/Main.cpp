@@ -2,6 +2,7 @@
 #include <queue>
 #include <iostream>
 #include <Windows.h>
+#include <string>
 
 #include "Application/Application.h"
 #include "Physics/Physics_Engine.h"
@@ -9,7 +10,9 @@
 #include "Objects.h"
 
 template <class T>
-extern void Call_Engine(T& object, double ts, void(*f)(T&, double)) {
+extern void Call_Engine(T& object, double ts, void(*f)(T&, double, std::string), std::string ODES) {
+	if (ODES != "RK4" and ODES != "Eular") std::cout << "ODES invalid Type" << std::endl;
+
 	LARGE_INTEGER freq;
 	LARGE_INTEGER t1, t2;
 	double elapsedTime = 0, prevTS = ts;
@@ -17,7 +20,7 @@ extern void Call_Engine(T& object, double ts, void(*f)(T&, double)) {
 	QueryPerformanceFrequency(&freq);
 	QueryPerformanceCounter(&t1);
 
-	f(object, ts);
+	f(object, ts, ODES);
 
 	QueryPerformanceCounter(&t2);
 	elapsedTime = (t2.QuadPart - t1.QuadPart) * 1000.0 / freq.QuadPart /1000;
@@ -28,7 +31,7 @@ extern void Call_Engine(T& object, double ts, void(*f)(T&, double)) {
 			QueryPerformanceFrequency(&freq);
 			QueryPerformanceCounter(&t1);
 
-			f(object, ts);
+			f(object, ts, ODES);
 
 			QueryPerformanceCounter(&t2);
 			elapsedTime = (t2.QuadPart - t1.QuadPart) * 1000.0 / freq.QuadPart / 1000;
@@ -38,7 +41,7 @@ extern void Call_Engine(T& object, double ts, void(*f)(T&, double)) {
 			QueryPerformanceFrequency(&freq);
 			QueryPerformanceCounter(&t1);
 
-			f(object, elapsedTime);
+			f(object, elapsedTime, ODES);
 
 			QueryPerformanceCounter(&t2);
 			elapsedTime = (t2.QuadPart - t1.QuadPart) * 1000.0 / freq.QuadPart / 1000;
@@ -48,16 +51,20 @@ extern void Call_Engine(T& object, double ts, void(*f)(T&, double)) {
 }
 
 int main() {
-	//Ball Ball1(vec2d::CalculateMagnitude(10, 10, 0), vec2d::CalculateMagnitude(15 , 7.5, 0), { {0,0},{0,0} }, 0.2f, 0.3f, 0.8f, 0.1f, 100, 0.7, 100);
-	//Simple_pendulum Pendulum1(vec2d::CalculateMagnitude(18, 21, 0), vec2d::CalculateMagnitude(0, 0, 0), { {0,0},{0,0} }, 0.2f, 0.3f, 0.8f, 0.1f, 10, 0, PI/2, 0.7, 30);
-	Complex_pendulum Pendulum2(vec2d::CalculateMagnitude(18, 21, 0), vec2d::CalculateMagnitude(0, 0, 0), { {0,0},{0,0} }, 0.2f, 0.3f, 0.8f, 0.1f, 10, 5, 0, 0, PI / 2, 0.2, vec2d::CalculateMagnitude(0, 0, 0), vec2d::CalculateMagnitude(0, 0, 0), 10, 5, 0, 0, PI / 2, 0.2, 6);
+	/*Position, Velo, Acceleration, Colour1, Colour2, Colour3, Colour4, Mass, Radius, Sides*/
+	Ball Ball1(vec2d::CalculateMagnitude(10, 10, 0), vec2d::CalculateMagnitude(15 , 7.5, 0), { {0,0},{0,0} }, 0.2f, 0.3f, 0.8f, 0.1f, 100, 0.7, 100);
+	/*Anchorpos, Velo, Acc, Colour1, Colour2, Colour3, Colour4, Length, Angv, Ang, Radius, Sides*/
+	Simple_pendulum Pendulum1(vec2d::CalculateMagnitude(18, 21, 0), vec2d::CalculateMagnitude(0, 0, 0), { {0,0},{0,0} }, 0.2f, 0.3f, 0.8f, 0.1f, 10, 0, PI/2, 0.7, 30);
+	/*Anchorpos, Velo, Acc, Colour1, Colour2, Colour3, Colour4, Mass, Length, Anga, Angv, Ang, Radius, Velo2, Acc2, Mass2, Length2, Anga2, Angv2, Ang2, Radius2, Sides*/
+	Complex_pendulum Pendulum2(vec2d::CalculateMagnitude(18, 11, 0), vec2d::CalculateMagnitude(0, 0, 0), { {0,0},{0,0} }, 0.2f, 0.3f, 0.8f, 0.1f, 10, 5, 0, 0, PI, 0.2, vec2d::CalculateMagnitude(0, 0, 0), vec2d::CalculateMagnitude(0, 0, 0), 10, 5, 0, 0, PI/2, 0.2, 100);
 	double ts = 0.001;
-	//std::thread application(app, &Pendulum2);
-	std::thread physics(Call_Engine<Complex_pendulum>, std::ref(Pendulum2), ts, double_pendulum);
+	std::thread application(app, &Pendulum2);
+	/*Class type, object, timestep, simulation function, ODES type*/
+	std::thread physics(Call_Engine<Complex_pendulum>, std::ref(Pendulum2), ts, double_pendulum, "RK4");
 	
 	std::cout << "Physics Engine Running." << "\n";
 
-	//application.join();
+	application.join();
 	physics.join();
 	
 	

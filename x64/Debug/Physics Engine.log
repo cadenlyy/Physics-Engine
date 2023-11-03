@@ -1,40 +1,8 @@
-﻿  Application.cpp
-C:\Users\caden\Documents\code\Real\Physics Engine\src\Application\Application.cpp(35,21): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
-C:\Users\caden\Documents\code\Real\Physics Engine\src\Application\Application.cpp(36,22): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
-C:\Users\caden\Documents\code\Real\Physics Engine\src\Application\Application.cpp(39,45): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\caden\Documents\code\Real\Physics Engine\src\Application\Application.cpp(39,34): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\caden\Documents\code\Real\Physics Engine\src\Application\Application.cpp(63,31): warning C4244: 'argument': conversion from 'int' to '_Ty', possible loss of data
-          with
-          [
-              _Ty=float
-          ]
-C:\Users\caden\Documents\code\Real\Physics Engine\src\Application\Application.cpp(64,31): warning C4244: 'argument': conversion from 'int' to '_Ty', possible loss of data
-          with
-          [
-              _Ty=float
-          ]
-C:\Users\caden\Documents\code\Real\Physics Engine\src\Application\Application.cpp(71,53): warning C4244: 'argument': conversion from 'int' to '_Ty', possible loss of data
-          with
-          [
-              _Ty=float
-          ]
-C:\Users\caden\Documents\code\Real\Physics Engine\src\Application\Application.cpp(72,61): warning C4244: 'argument': conversion from 'int' to '_Ty', possible loss of data
-          with
-          [
-              _Ty=float
-          ]
-C:\Users\caden\Documents\code\Real\Physics Engine\src\Application\Application.cpp(85,88): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
-C:\Users\caden\Documents\code\Real\Physics Engine\src\Application\Application.cpp(91,65): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
-C:\Users\caden\Documents\code\Real\Physics Engine\src\Application\Application.cpp(112,72): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
-C:\Users\caden\Documents\code\Real\Physics Engine\src\Application\Application.cpp(118,49): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
-C:\Users\caden\Documents\code\Real\Physics Engine\src\Application\Application.cpp(146,78): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
-C:\Users\caden\Documents\code\Real\Physics Engine\src\Application\Application.cpp(154,13): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
-  Main.cpp
-C:\Users\caden\Documents\code\Real\Physics Engine\src\Main.cpp(27,20): warning C4244: 'argument': conversion from 'double' to 'DWORD', possible loss of data
-C:\Users\caden\Documents\code\Real\Physics Engine\src\Main.cpp(56): message : see reference to function template instantiation 'void Call_Engine<Complex_pendulum>(T &,double,void (__cdecl *)(T &,double))' being compiled
+﻿  Main.cpp
+C:\Users\caden\Documents\code\Real\Physics Engine\src\Main.cpp(30,20): warning C4244: 'argument': conversion from 'double' to 'DWORD', possible loss of data
+C:\Users\caden\Documents\code\Real\Physics Engine\src\Main.cpp(63): message : see reference to function template instantiation 'void Call_Engine<Complex_pendulum>(T &,double,void (__cdecl *)(T &,double,std::string),std::string)' being compiled
           with
           [
               T=Complex_pendulum
           ]
-  Generating Code...
   Physics Engine.vcxproj -> C:\Users\caden\Documents\code\Real\Physics Engine\x64\Debug\Physics Engine.exe

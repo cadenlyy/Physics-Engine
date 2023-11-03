@@ -465,7 +465,7 @@
     <ClInclude Include="src\Physics\Force.h" />
     <ClInclude Include="src\Objects.h" />
     <ClInclude Include="src\Physics\Physics_Engine.h" />
-    <ClInclude Include="src\Physics\RK4.cpp" />
+    <ClInclude Include="src\Physics\ODES.cpp" />
     <ClInclude Include="src\Physics\Vec2d.h" />
   </ItemGroup>
   <ItemGroup>
