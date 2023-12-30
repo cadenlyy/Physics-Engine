@@ -38,8 +38,7 @@ extern int app(Object* Object1) {
 
     //create Application window
     window = glfwCreateWindow(app.Width, app.Height, "Physics Engine", NULL, NULL);
-    if (!window)
-    {
+    if (!window){
         glfwTerminate();
         return -1;
     }
@@ -104,10 +103,14 @@ extern int app(Object* Object1) {
 
         //object
 
-        std::vector <float> Pos = Object1->VertexPos;//defining the vector for vertex positions
+        std::vector <float> Pos;
+        //defining the vector for vertex positions
+        for (const auto& i : Object1->VertexPos.s_get()) {
+            Pos.push_back(i.first.first);
+            Pos.push_back(i.first.second);
+        }//importing from shared memory
 
-        std::vector <unsigned int> Ind = Object1->IndexPos;//defining the vector for vertex positions
-        //std::vector <unsigned int> Ind = { 6 + 8,6 + 9,6 + 10 };
+        std::vector <unsigned int> Ind = Object1->IndexPos.s_get();//importing from shared memory
 
         Vertex_Array va;
         Vertex_Buffer vb(nullptr, Pos.size() * sizeof(float), "DYNAMIC");//creates a dynamic vertex buffer without any values
@@ -150,7 +153,12 @@ extern int app(Object* Object1) {
 
             renderer.Draw(vaIncr, ibIncr, shaderIncr);//drawing increment lines
             
-            if(!Object1->VertexPos.empty()) Pos = Object1->VertexPos;//check is VertexPos of object is empty incase the CPU in taking a while to edit the vector and it happens to be empty when this is called
+            Pos = {};//clearing Pos
+            for (const auto& i : Object1->VertexPos.s_get()) {
+                Pos.push_back(i.first.first);
+                Pos.push_back(i.first.second);
+            }//importing from shared memory
+
             vb.Bind();
             if (!Pos.empty()) vb.Sub(&Pos.front(), Pos.size() * sizeof(float)); //ensuring Pos is not empty when this is called in case of the editing of it being slow and it still being empty
 
@@ -160,7 +168,7 @@ extern int app(Object* Object1) {
                 
             renderer.Draw(va, ib, shader);//drawing objects
 
-            GLCall(glDrawElements(GL_TRIANGLES, Object1->IndexPos.size(), GL_UNSIGNED_INT, nullptr));//drawing everything on the window
+            GLCall(glDrawElements(GL_TRIANGLES, Object1->IndexPos.s_get().size(), GL_UNSIGNED_INT, nullptr));//drawing everything on the window
 
             glfwSwapBuffers(window);
             glfwPollEvents();
@@ -169,7 +177,7 @@ extern int app(Object* Object1) {
             elapsedTime = (t2.QuadPart - t1.QuadPart) * 1000.0 / freq.QuadPart / 1000;
             int FPS = 1 / elapsedTime;
             elapsedTime = 0;
-            std::cout << FPS << std::endl;
+            //std::cout << FPS << std::endl;//output FPS
         }
     }
     glfwTerminate();//stopping the app

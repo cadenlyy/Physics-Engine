@@ -5,24 +5,26 @@
 
 #include "Physics/Vec2d.h"
 #include "Physics/constants.h"
+#include "s_vector.h"
 
 class Object {
 public:
     vec2d Position;
     vec2d Velocity;
     vec2d Acceleration;
-    std::vector <float> VertexPos;
-    std::vector <unsigned int> IndexPos;
+    s_vector <ppd> VertexPos;
+    int NoVertexPos;
+    s_vector <unsigned int> IndexPos;
     float Color[4];
 };
 
 class Ball: public Object{
 public:
-    Ball(ppd Position, ppd Velocity, ppd Acceleration, float Color1, float Color2, float Color3, float Color4, double Mass, double Radius, int Sides);
+    Ball(ppd Pos, ppd Velo, ppd Acc, float Color1, float Color2, float Color3, float Color4, double Mass, double Radius, int Sides);
     double Mass;
     double Radius;
     int Sides;
-    std::vector<float> VertexOfBall(float radius, int Sides);
+    std::vector<ppd> VertexOfBall(float radius, int Sides);
 private:
     std::vector<unsigned int> IndexOfBall(int Count);
 };
@@ -36,7 +38,7 @@ public:
     double Ang;
     double Radius;
     int Sides;
-    std::vector<float> VertexOfSimplePendulum(float radius, int Sides);
+    std::vector<ppd> VertexOfSimplePendulum(float radius, int Sides);
 private:
     std::vector<unsigned int> IndexOfSimplePendulum(int Count);
 };
@@ -64,7 +66,7 @@ public:
     double Radius2;
 
     int Sides;
-    std::vector<float> VertexOfComplexPendulum(float radius, float radius2, int Sides);
+    std::vector<ppd> VertexOfComplexPendulum(float radius, float radius2, int Sides);
 private:
     std::vector<unsigned int> IndexOfComplexPendulum(int Count);
 };

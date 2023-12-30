@@ -1,9 +1,7 @@
 #include <vector>
 
-#include "Vec2d.h"
-
 template<class T>
-extern double RK4(double x, std::vector<double> v, double s, T object, double (*f)(double, std::vector<double>, T), int rc) {
+static double RK4(double x, std::vector<double> v, double s, T object, double (*f)(double, std::vector<double>, T), int rc) {
 	std::vector <double> vk1, vk2, vk3;
 	double k1, k2, k3, k4, a;
 
@@ -29,9 +27,9 @@ extern double RK4(double x, std::vector<double> v, double s, T object, double (*
 }
 
 template<class T>
-extern double Eular(double x, std::vector<double> v, double s, T object, double (*f)(double, std::vector<double>, T), int rc) {
+static double Euler(double x, std::vector<double> v, double s, T object, double (*f)(double, std::vector<double>, T), int rc) {
 	double a;
-	if (rc > 0) a = Eular(x, v, s, object, f, rc - 1);
+	if (rc > 0) a = Euler(x, v, s, object, f, rc - 1);
 	else a = v[0] + s * f(x+s, v, object);
 	return a;
 }

@@ -9,22 +9,21 @@ Ball::Ball(ppd Pos, ppd Velo, ppd Acc, float Color1, float Color2, float Color3,
 	Ball::Mass = Mass;
 	Ball::Radius = Radius;
 	Ball::Sides = Sides;
+	Ball::NoVertexPos = Sides + 1;
 	float color[4] = {Color1, Color2, Color3, Color4};
 	for(int i = 0; i < 4; i++) Ball::Color[i] = color[i];
-	Ball::VertexPos = Ball::VertexOfBall(Radius, Sides);
-	Ball::IndexPos = Ball::IndexOfBall(Sides);
+	Ball::VertexPos.s_equ(Ball::VertexOfBall(Radius, Sides));
+	Ball::IndexPos.s_equ(Ball::IndexOfBall(Sides));
 }
 
-std::vector<float> Ball::VertexOfBall(float radius, int Sides) {
+std::vector<ppd> Ball::VertexOfBall(float radius, int Sides) {
 	float Radius = radius * 100;
-	std::vector <float> pos;
-	pos.push_back(Position.Magnitude.first.first * 100);
-	pos.push_back(Position.Magnitude.first.second * 100);
+	std::vector <ppd> pos;
+	pos.push_back(vec2d::CalculateMagnitude(Position.Magnitude.first.first * 100,Position.Magnitude.first.second * 100,0));
 	float BaseAng = 2*PI / Sides;
 	float ang = 0;
 	for (int i = 0; i < Sides; i++) {
-		pos.push_back(Position.Magnitude.first.first*100 + Radius * sin(ang));
-		pos.push_back(Position.Magnitude.first.second*100 + Radius * cos(ang));
+		pos.push_back(vec2d::CalculateMagnitude(Position.Magnitude.first.first*100 + Radius * sin(ang), Position.Magnitude.first.second * 100 + Radius * cos(ang),0));
 		ang -= BaseAng;
 	}
 	return pos;
@@ -57,27 +56,23 @@ Simple_pendulum::Simple_pendulum(ppd AnchorPos, ppd Velo, ppd Acc, float Color1,
 	Simple_pendulum::Ang = Ang;
 	Simple_pendulum::Radius = Radius;
 	Simple_pendulum::Sides = Sides;
+	Simple_pendulum::NoVertexPos = Sides + 4;
 	float color[4] = { Color1, Color2, Color3, Color4 };
 	for (int i = 0; i < 4; i++) Simple_pendulum::Color[i] = color[i];
-	Simple_pendulum::VertexPos = Simple_pendulum::VertexOfSimplePendulum(Radius, Sides);
-	Simple_pendulum::IndexPos = Simple_pendulum::IndexOfSimplePendulum(Sides);
+	Simple_pendulum::VertexPos.s_equ(Simple_pendulum::VertexOfSimplePendulum(Radius, Sides));
+	Simple_pendulum::IndexPos.s_equ(Simple_pendulum::IndexOfSimplePendulum(Sides));
 }
-std::vector<float> Simple_pendulum::VertexOfSimplePendulum(float radius, int Sides) {
+std::vector<ppd> Simple_pendulum::VertexOfSimplePendulum(float radius, int Sides) {
 	float Radius = radius * 100;
-	std::vector <float> pos;
-	pos.push_back(AnchorPos.Magnitude.first.first * 100 + 1.0f * cos(PI / 2 + Ang));
-	pos.push_back(AnchorPos.Magnitude.first.second * 100 + 1.0f * sin(PI / 2 + Ang));
-	pos.push_back(AnchorPos.Magnitude.first.first * 100 + 1.0f * sin(PI / 2 - Ang));
-	pos.push_back(AnchorPos.Magnitude.first.second * 100 + 1.0f * cos(PI / 2 - Ang));
-	pos.push_back(Position.Magnitude.first.first * 100 - 1.0f * sin(PI / 2 - Ang));
-	pos.push_back(Position.Magnitude.first.second * 100 - 1.0f * cos(PI / 2 - Ang));
-	pos.push_back(Position.Magnitude.first.first * 100 - 1.0f * cos(PI / 2 + Ang));
-	pos.push_back(Position.Magnitude.first.second * 100 - 1.0f * sin(PI / 2 + Ang));
+	std::vector <ppd> pos;
+	pos.push_back(vec2d::CalculateMagnitude(AnchorPos.Magnitude.first.first * 100 + 1.0f * cos(PI / 2 + Ang), AnchorPos.Magnitude.first.second * 100 + 1.0f * sin(PI / 2 + Ang),0));
+	pos.push_back(vec2d::CalculateMagnitude(AnchorPos.Magnitude.first.first * 100 + 1.0f * sin(PI / 2 - Ang), AnchorPos.Magnitude.first.second * 100 + 1.0f * cos(PI / 2 - Ang),0));
+	pos.push_back(vec2d::CalculateMagnitude(Position.Magnitude.first.first * 100 - 1.0f * sin(PI / 2 - Ang), Position.Magnitude.first.second * 100 - 1.0f * cos(PI / 2 - Ang),0));
+	pos.push_back(vec2d::CalculateMagnitude(Position.Magnitude.first.first * 100 - 1.0f * cos(PI / 2 + Ang), Position.Magnitude.first.second * 100 - 1.0f * sin(PI / 2 + Ang),0));
 	float BaseAng = 2 * PI / Sides;
 	float ang = 0;
 	for (int i = 0; i < Sides; i++) {
-		pos.push_back(Position.Magnitude.first.first * 100 + Radius * sin(ang));
-		pos.push_back(Position.Magnitude.first.second * 100 + Radius * cos(ang));
+		pos.push_back(vec2d::CalculateMagnitude(Position.Magnitude.first.first * 100 + Radius * sin(ang), Position.Magnitude.first.second * 100 + Radius * cos(ang),0));
 
 		ang -= BaseAng;
 	}
@@ -127,46 +122,37 @@ Complex_pendulum::Complex_pendulum(ppd AnchorPos, ppd Velo, ppd Acc, float Color
 	Complex_pendulum::Radius2 = Radius2;
 
 	Complex_pendulum::Sides = Sides;
+	Complex_pendulum::NoVertexPos = Sides * 2 + 8;
 	
-	Complex_pendulum::VertexPos = Complex_pendulum::VertexOfComplexPendulum(Radius, Radius2, Sides);
-	Complex_pendulum::IndexPos = Complex_pendulum::IndexOfComplexPendulum(Sides);
+	Complex_pendulum::VertexPos.s_equ(Complex_pendulum::VertexOfComplexPendulum(Radius, Radius2, Sides));
+	Complex_pendulum::IndexPos.s_equ(Complex_pendulum::IndexOfComplexPendulum(Sides));
 }
 
-std::vector<float> Complex_pendulum::VertexOfComplexPendulum(float radius, float radius2, int Sides) {
+std::vector<ppd> Complex_pendulum::VertexOfComplexPendulum(float radius, float radius2, int Sides) {
 	float Radius = radius * 100;
 	float Radius2 = radius2 * 100;
 	float BaseAng = 2 * PI / Sides;
-	std::vector <float> pos;
+	std::vector <ppd> pos;
 
-	pos.push_back(AnchorPos.Magnitude.first.first * 100 + 1.0f * cos(PI / 2 + Ang));
-	pos.push_back(AnchorPos.Magnitude.first.second * 100 + 1.0f * sin(PI / 2 + Ang));
-	pos.push_back(AnchorPos.Magnitude.first.first * 100 + 1.0f * sin(PI / 2 - Ang));
-	pos.push_back(AnchorPos.Magnitude.first.second * 100 + 1.0f * cos(PI / 2 - Ang));
-	pos.push_back(Position.Magnitude.first.first * 100 - 1.0f * sin(PI / 2 - Ang));
-	pos.push_back(Position.Magnitude.first.second * 100 - 1.0f * cos(PI / 2 - Ang));
-	pos.push_back(Position.Magnitude.first.first * 100 - 1.0f * cos(PI / 2 + Ang));
-	pos.push_back(Position.Magnitude.first.second * 100 - 1.0f * sin(PI / 2 + Ang));
+	pos.push_back(vec2d::CalculateMagnitude(AnchorPos.Magnitude.first.first * 100 + 2.0f * cos(PI / 2 + Ang), AnchorPos.Magnitude.first.second * 100 + 2.0f * sin(PI / 2 + Ang),0));
+	pos.push_back(vec2d::CalculateMagnitude(AnchorPos.Magnitude.first.first * 100 + 2.0f * sin(PI / 2 - Ang), AnchorPos.Magnitude.first.second * 100 + 2.0f * cos(PI / 2 - Ang),0));
+	pos.push_back(vec2d::CalculateMagnitude(Position.Magnitude.first.first * 100 - 2.0f * sin(PI / 2 - Ang), Position.Magnitude.first.second * 100 - 2.0f * cos(PI / 2 - Ang),0));
+	pos.push_back(vec2d::CalculateMagnitude(Position.Magnitude.first.first * 100 - 2.0f * cos(PI / 2 + Ang), Position.Magnitude.first.second * 100 - 2.0f * sin(PI / 2 + Ang),0));
 
 	float ang = 0;
 	for (int i = 0; i < Sides; i++) {
-		pos.push_back(Position.Magnitude.first.first * 100 + Radius * sin(ang));
-		pos.push_back(Position.Magnitude.first.second * 100 + Radius * cos(ang));
+		pos.push_back(vec2d::CalculateMagnitude(Position.Magnitude.first.first * 100 + Radius * sin(ang), Position.Magnitude.first.second * 100 + Radius * cos(ang),0));
 		ang -= BaseAng;
 	}
 
-	pos.push_back(Position.Magnitude.first.first * 100 + 1.0f * cos(PI / 2 + Ang));
-	pos.push_back(Position.Magnitude.first.second * 100 + 1.0f * sin(PI / 2 + Ang));
-	pos.push_back(Position.Magnitude.first.first * 100 + 1.0f * sin(PI / 2 - Ang));
-	pos.push_back(Position.Magnitude.first.second * 100 + 1.0f * cos(PI / 2 - Ang));
-	pos.push_back(Position2.Magnitude.first.first * 100 - 1.0f * sin(PI / 2 - Ang));
-	pos.push_back(Position2.Magnitude.first.second * 100 - 1.0f * cos(PI / 2 - Ang));
-	pos.push_back(Position2.Magnitude.first.first * 100 - 1.0f * cos(PI / 2 + Ang));
-	pos.push_back(Position2.Magnitude.first.second * 100 - 1.0f * sin(PI / 2 + Ang));
+	pos.push_back(vec2d::CalculateMagnitude(Position.Magnitude.first.first * 100 + 2.0f * cos(PI / 2 + Ang), Position.Magnitude.first.second * 100 + 2.0f * sin(PI / 2 + Ang),0));
+	pos.push_back(vec2d::CalculateMagnitude(Position.Magnitude.first.first * 100 + 2.0f * sin(PI / 2 - Ang), Position.Magnitude.first.second * 100 + 2.0f * cos(PI / 2 - Ang),0));
+	pos.push_back(vec2d::CalculateMagnitude(Position2.Magnitude.first.first * 100 - 2.0f * sin(PI / 2 - Ang), Position2.Magnitude.first.second * 100 - 2.0f * cos(PI / 2 - Ang),0));
+	pos.push_back(vec2d::CalculateMagnitude(Position2.Magnitude.first.first * 100 - 2.0f * cos(PI / 2 + Ang), Position2.Magnitude.first.second * 100 - 2.0f * sin(PI / 2 + Ang),0));
 
 	ang = 0;
 	for (int i = 0; i < Sides; i++) {
-		pos.push_back(Position2.Magnitude.first.first * 100 + Radius2 * sin(ang));
-		pos.push_back(Position2.Magnitude.first.second * 100 + Radius2 * cos(ang));
+		pos.push_back(vec2d::CalculateMagnitude(Position2.Magnitude.first.first * 100 + Radius2 * sin(ang), Position2.Magnitude.first.second * 100 + Radius2 * cos(ang),0));
 		ang -= BaseAng;
 	}
 
@@ -203,3 +189,4 @@ std::vector<unsigned int> Complex_pendulum::IndexOfComplexPendulum(int Count) {
 	}
 	return ind;
 }
+

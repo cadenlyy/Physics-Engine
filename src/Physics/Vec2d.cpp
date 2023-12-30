@@ -4,7 +4,7 @@
 #include "constants.h"
 
 ppd vec2d::CalculateMagnitude(double x, double y, bool c){
-    if (c == false) {
+    if (c == false) { // defining using cartesian coords
         if (x == 0 and y == 0) {
             return { {x,y},{sqrt(pow(abs(x),2) + pow(abs(y),2)),0} };
         }
@@ -30,14 +30,20 @@ ppd vec2d::CalculateMagnitude(double x, double y, bool c){
             return { {x,y},{sqrt(pow(abs(x),2) + pow(abs(y),2)),PI + atan(x / y)} };
         }
         if (x < 0 and y > 0) {
-            return { {x,y},{sqrt(pow(abs(x),2) + pow(abs(y),2)),PI * 2 - atan(x / y)} };
+            return { {x,y},{sqrt(pow(abs(x),2) + pow(abs(y),2)),PI/2*3 - atan(x / y)} };
         }
     }
+    //defining using polar coords
     return { {x * sin(y),x * cos(y)},{x,y} };
 }
 
 ppd vec2d::Add(ppd x, ppd y) {
     return CalculateMagnitude(x.first.first + y.first.first, x.first.second + y.first.second, 0);
+}
+
+ppd vec2d::Sub(ppd x, ppd y)
+{
+    return CalculateMagnitude(x.first.first - y.first.first, x.first.second - y.first.second, 0);
 }
 
 ppd vec2d::Multi(ppd x, ppd y) {
@@ -50,7 +56,7 @@ ppd vec2d::Divide(ppd x, ppd y) {
 
 ppd vec2d::Sum(std::vector <ppd> v) {
     ppd ans = CalculateMagnitude(0, 0, 0);
-    for (auto i : v) {
+    for (const auto& i : v) {
         ans = vec2d::Add(ans, i);
     }
     return ans;
@@ -61,4 +67,8 @@ double vec2d::AngleAdd(double x, double y) {
         return x + y - 2 * PI;
     }
     return x + y;
+}
+
+double vec2d::Dot(ppd x, ppd y){
+    return x.first.first*y.first.first+x.first.second*y.first.second;
 }

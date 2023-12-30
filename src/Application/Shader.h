@@ -20,7 +20,7 @@ private:
 	unsigned int CreateShader(const std::string& vertexShader, const std::string& fragmentShader);
 
 public:
-	Shader(const std::string& filepath);
+	Shader(const std::string& filepath);//constructor
 	~Shader();
 
 	void Bind() const;

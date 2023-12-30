@@ -18,11 +18,11 @@ extern void ball_terminal_velocity(Ball& Ball1, double s, std::string ODES) {
 	tc += s;
 	v = { Ball1.Velocity.Magnitude.first.second };
 	if (ODES == "RK4") Ball1.Velocity.Magnitude.first.second = RK4<Ball>(tc, v, s, Ball1, fball_y, 0);
-	if (ODES == "Eular") Ball1.Velocity.Magnitude.first.second = Eular <Ball>(tc, v, s, Ball1, fball_y, 0);
+	if (ODES == "Euler") Ball1.Velocity.Magnitude.first.second = Euler <Ball>(tc, v, s, Ball1, fball_y, 0);
 	v = { Ball1.Velocity.Magnitude.first.second, Ball1.Position.Magnitude.first.second };
 	if (ODES == "RK4") Ball1.Position.Magnitude.first.second = RK4<Ball>(tc, v, s, Ball1, fball_y, 1);
-	if (ODES == "Eular") Ball1.Position.Magnitude.first.second = Eular<Ball>(tc, v, s, Ball1, fball_y, 1);
-	Ball1.VertexPos = Ball1.VertexOfBall(Ball1.Radius, Ball1.Sides);
+	if (ODES == "Euler") Ball1.Position.Magnitude.first.second = Euler<Ball>(tc, v, s, Ball1, fball_y, 1);
+	Ball1.VertexPos.s_equ(Ball1.VertexOfBall(Ball1.Radius, Ball1.Sides));
 }
 
 extern void thrown_ball(Ball& Ball1, double s, std::string ODES){
@@ -31,17 +31,17 @@ extern void thrown_ball(Ball& Ball1, double s, std::string ODES){
 	tc += s;
 	v = {Ball1.Velocity.Magnitude.first.first};
 	if (ODES == "RK4") Ball1.Velocity.Magnitude.first.first = RK4<Ball>(tc, v, s, Ball1, fball_x, 0);
-	if (ODES == "Eular") Ball1.Velocity.Magnitude.first.first = Eular<Ball>(tc, v, s, Ball1, fball_x, 0);
+	if (ODES == "Euler") Ball1.Velocity.Magnitude.first.first = Euler<Ball>(tc, v, s, Ball1, fball_x, 0);
 	v = {Ball1.Velocity.Magnitude.first.second};
 	if (ODES == "RK4") Ball1.Velocity.Magnitude.first.second = RK4<Ball>(tc, v, s, Ball1, fball_y, 0);
-	if (ODES == "Eular") Ball1.Velocity.Magnitude.first.second = Eular<Ball>(tc, v, s, Ball1, fball_y, 0);
+	if (ODES == "Euler") Ball1.Velocity.Magnitude.first.second = Euler<Ball>(tc, v, s, Ball1, fball_y, 0);
 	v = {Ball1.Velocity.Magnitude.first.first, Ball1.Position.Magnitude.first.first};
 	if (ODES == "RK4") Ball1.Position.Magnitude.first.first = RK4<Ball>(tc, v, s, Ball1, fball_x, 1);
-	if (ODES == "Eular") Ball1.Position.Magnitude.first.first = Eular<Ball>(tc, v, s, Ball1, fball_x, 1);
+	if (ODES == "Euler") Ball1.Position.Magnitude.first.first = Euler<Ball>(tc, v, s, Ball1, fball_x, 1);
 	v = {Ball1.Velocity.Magnitude.first.second, Ball1.Position.Magnitude.first.second};
 	if (ODES == "RK4") Ball1.Position.Magnitude.first.second = RK4<Ball>(tc, v, s, Ball1, fball_y, 1);
-	if (ODES == "Eular") Ball1.Position.Magnitude.first.second = Eular<Ball>(tc, v, s, Ball1, fball_y, 1);
-	Ball1.VertexPos = Ball1.VertexOfBall(Ball1.Radius, Ball1.Sides);
+	if (ODES == "Euler") Ball1.Position.Magnitude.first.second = Euler<Ball>(tc, v, s, Ball1, fball_y, 1);
+	Ball1.VertexPos.s_equ(Ball1.VertexOfBall(Ball1.Radius, Ball1.Sides));
 }
 
 static void single_pendulum_period(Simple_pendulum pendulum1 ,ppd& Positions){
@@ -75,12 +75,12 @@ extern void single_pendulum(Simple_pendulum& Pendulum1, double s, std::string OD
 	tc += s;
 	v = {Pendulum1.Angv, Pendulum1.Ang};
 	if (ODES == "RK4") Pendulum1.Angv = RK4<Simple_pendulum>(tc, v, s, Pendulum1, fsimple_pendulum, 0);
-	if (ODES == "Eular") Pendulum1.Angv = Eular<Simple_pendulum>(tc, v, s, Pendulum1, fsimple_pendulum, 0);
+	if (ODES == "Euler") Pendulum1.Angv = Euler<Simple_pendulum>(tc, v, s, Pendulum1, fsimple_pendulum, 0);
 	v = {Pendulum1.Angv, Pendulum1.Ang};
 	if (ODES == "RK4") Pendulum1.Ang = RK4<Simple_pendulum>(tc, v, s, Pendulum1, fsimple_pendulum, 1);
-	if (ODES == "Eular") Pendulum1.Ang = Eular<Simple_pendulum>(tc, v, s, Pendulum1, fsimple_pendulum, 1);
+	if (ODES == "Euler") Pendulum1.Ang = Euler<Simple_pendulum>(tc, v, s, Pendulum1, fsimple_pendulum, 1);
 	Pendulum1.Position.Magnitude = vec2d::CalculateMagnitude(Pendulum1.AnchorPos.Magnitude.first.first + Pendulum1.Length * sin(Pendulum1.Ang), Pendulum1.AnchorPos.Magnitude.first.second - Pendulum1.Length * cos(Pendulum1.Ang), 0);
-	Pendulum1.VertexPos = Pendulum1.VertexOfSimplePendulum(Pendulum1.Radius, Pendulum1.Sides);
+	Pendulum1.VertexPos.s_equ(Pendulum1.VertexOfSimplePendulum(Pendulum1.Radius, Pendulum1.Sides));
 }
 
 extern void double_pendulum(Complex_pendulum& Pendulum2, double s, std::string ODES){
@@ -93,18 +93,19 @@ extern void double_pendulum(Complex_pendulum& Pendulum2, double s, std::string O
 	Pendulum2.Anga2 = fdouble_pendulum_2(tc, v, Pendulum2);
 	v = {Pendulum2.Angv, Pendulum2.Ang, Pendulum2.Anga, Pendulum2.Angv2, Pendulum2.Ang2, Pendulum2.Anga2};
 	if (ODES == "RK4") Pendulum2.Angv = RK4<Complex_pendulum>(tc, v, s, Pendulum2, fdouble_pendulum_1, 0);
-	if (ODES == "Eular") Pendulum2.Angv = Eular<Complex_pendulum>(tc, v, s, Pendulum2, fdouble_pendulum_1, 0);
+	if (ODES == "Euler") Pendulum2.Angv = Euler<Complex_pendulum>(tc, v, s, Pendulum2, fdouble_pendulum_1, 0);
 	v = {Pendulum2.Angv2, Pendulum2.Ang2, Pendulum2.Anga2, Pendulum2.Angv, Pendulum2.Ang, Pendulum2.Anga};
 	if (ODES == "RK4") Pendulum2.Angv2 = RK4<Complex_pendulum>(tc, v, s, Pendulum2, fdouble_pendulum_2, 0);
-	if (ODES == "Eular") Pendulum2.Angv2 = Eular<Complex_pendulum>(tc, v, s, Pendulum2, fdouble_pendulum_2, 0);
+	if (ODES == "Euler") Pendulum2.Angv2 = Euler<Complex_pendulum>(tc, v, s, Pendulum2, fdouble_pendulum_2, 0);
 	v = {Pendulum2.Angv, Pendulum2.Ang, Pendulum2.Anga, Pendulum2.Angv2, Pendulum2.Ang2, Pendulum2.Anga2};
 	if (ODES == "RK4") Pendulum2.Ang = RK4<Complex_pendulum>(tc, v, s, Pendulum2, fdouble_pendulum_1, 1);
-	if (ODES == "Eular") Pendulum2.Ang = Eular<Complex_pendulum>(tc, v, s, Pendulum2, fdouble_pendulum_1, 1);
+	if (ODES == "Euler") Pendulum2.Ang = Euler<Complex_pendulum>(tc, v, s, Pendulum2, fdouble_pendulum_1, 1);
 	v = {Pendulum2.Angv2, Pendulum2.Ang2, Pendulum2.Anga2, Pendulum2.Angv, Pendulum2.Ang, Pendulum2.Anga};
 	if (ODES == "RK4") Pendulum2.Ang2 = RK4<Complex_pendulum>(tc, v, s, Pendulum2, fdouble_pendulum_2, 1);
-	if (ODES == "Eular") Pendulum2.Ang2 = Eular<Complex_pendulum>(tc, v, s, Pendulum2, fdouble_pendulum_2, 1);
+	if (ODES == "Euler") Pendulum2.Ang2 = Euler<Complex_pendulum>(tc, v, s, Pendulum2, fdouble_pendulum_2, 1);
 	Pendulum2.Position.Magnitude = vec2d::CalculateMagnitude(Pendulum2.AnchorPos.Magnitude.first.first + Pendulum2.Length * sin(Pendulum2.Ang), Pendulum2.AnchorPos.Magnitude.first.second - Pendulum2.Length * cos(Pendulum2.Ang), 0);
 	Pendulum2.Position2.Magnitude = vec2d::CalculateMagnitude(Pendulum2.Position.Magnitude.first.first + Pendulum2.Length2 * sin(Pendulum2.Ang2), Pendulum2.Position.Magnitude.first.second - Pendulum2.Length2 * cos(Pendulum2.Ang2), 0);
-	Pendulum2.VertexPos = Pendulum2.VertexOfComplexPendulum(Pendulum2.Radius, Pendulum2.Radius2, Pendulum2.Sides);
+	Pendulum2.VertexPos.s_equ(Pendulum2.VertexOfComplexPendulum(Pendulum2.Radius, Pendulum2.Radius2, Pendulum2.Sides));
 }
 
+//extern void constrain()

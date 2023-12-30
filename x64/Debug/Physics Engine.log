@@ -1,8 +1,115 @@
-﻿  Main.cpp
-C:\Users\caden\Documents\code\Real\Physics Engine\src\Main.cpp(30,20): warning C4244: 'argument': conversion from 'double' to 'DWORD', possible loss of data
-C:\Users\caden\Documents\code\Real\Physics Engine\src\Main.cpp(63): message : see reference to function template instantiation 'void Call_Engine<Complex_pendulum>(T &,double,void (__cdecl *)(T &,double,std::string),std::string)' being compiled
-          with
-          [
-              T=Complex_pendulum
-          ]
-  Physics Engine.vcxproj -> C:\Users\caden\Documents\code\Real\Physics Engine\x64\Debug\Physics Engine.exe
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(531,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (Physics Engine.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  Application.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\shared\minwindef.h(130,1): warning C4005: 'APIENTRY': macro redefinition
+  (compiling source file 'src/Application/Application.cpp')
+  C:\Users\caden\Documents\code\Real\Physics_Engine\Dependencies\GLFW\include\GLFW\glfw3.h(123,1):
+  see previous definition of 'APIENTRY'
+  
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(36,21): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(37,22): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(40,45): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(40,34): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(63,31): warning C4244: 'argument': conversion from 'int' to '_Ty', possible loss of data
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(63,31): warning C4244:         with
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(63,31): warning C4244:         [
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(63,31): warning C4244:             _Ty=float
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(63,31): warning C4244:         ]
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(64,31): warning C4244: 'argument': conversion from 'int' to '_Ty', possible loss of data
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(64,31): warning C4244:         with
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(64,31): warning C4244:         [
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(64,31): warning C4244:             _Ty=float
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(64,31): warning C4244:         ]
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(71,53): warning C4244: 'argument': conversion from 'int' to '_Ty', possible loss of data
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(71,53): warning C4244:         with
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(71,53): warning C4244:         [
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(71,53): warning C4244:             _Ty=float
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(71,53): warning C4244:         ]
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(72,61): warning C4244: 'argument': conversion from 'int' to '_Ty', possible loss of data
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(72,61): warning C4244:         with
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(72,61): warning C4244:         [
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(72,61): warning C4244:             _Ty=float
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(72,61): warning C4244:         ]
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(85,63): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(91,63): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(109,34): warning C4244: 'argument': conversion from 'const _Ty1' to '_Ty', possible loss of data
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(109,34): warning C4244:         with
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(109,34): warning C4244:         [
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(109,34): warning C4244:             _Ty1=double
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(109,34): warning C4244:         ]
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(109,34): warning C4244:         and
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(109,34): warning C4244:         [
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(109,34): warning C4244:             _Ty=float
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(109,34): warning C4244:         ]
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(110,34): warning C4244: 'argument': conversion from 'const _Ty2' to '_Ty', possible loss of data
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(110,34): warning C4244:         with
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(110,34): warning C4244:         [
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(110,34): warning C4244:             _Ty2=double
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(110,34): warning C4244:         ]
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(110,34): warning C4244:         and
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(110,34): warning C4244:         [
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(110,34): warning C4244:             _Ty=float
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(110,34): warning C4244:         ]
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(116,46): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(122,47): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(158,38): warning C4244: 'argument': conversion from 'const _Ty1' to '_Ty', possible loss of data
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(158,38): warning C4244:         with
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(158,38): warning C4244:         [
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(158,38): warning C4244:             _Ty1=double
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(158,38): warning C4244:         ]
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(158,38): warning C4244:         and
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(158,38): warning C4244:         [
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(158,38): warning C4244:             _Ty=float
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(158,38): warning C4244:         ]
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(159,38): warning C4244: 'argument': conversion from 'const _Ty2' to '_Ty', possible loss of data
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(159,38): warning C4244:         with
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(159,38): warning C4244:         [
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(159,38): warning C4244:             _Ty2=double
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(159,38): warning C4244:         ]
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(159,38): warning C4244:         and
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(159,38): warning C4244:         [
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(159,38): warning C4244:             _Ty=float
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(159,38): warning C4244:         ]
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(163,63): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(171,13): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Application\Application.cpp(178,21): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  Main.cpp
+  Objects.cpp
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Objects.cpp(15,43): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Objects.cpp(23,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Objects.cpp(62,75): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Objects.cpp(72,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Objects.cpp(127,86): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Objects.cpp(127,78): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Objects.cpp(134,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  Force.cpp
+  GJK.cpp
+  Minkowski_Difference.cpp
+  Physics_Engine.cpp
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Physics\Physics_Engine.cpp(25,48): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Physics\Physics_Engine.cpp(44,48): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Physics\Physics_Engine.cpp(83,70): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Physics\Physics_Engine.cpp(108,89): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\caden\Documents\code\Real\Physics_Engine\src\Physics\Physics_Engine.cpp(108,71): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  Support.cpp
+  s_vector.cpp
+  Generating Code...
+glew32s.lib(glew.obj) : warning LNK4099: PDB '' was not found with 'glew32s.lib(glew.obj)' or at ''; linking object as if no debug info
+LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
+LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
+Application.obj : error LNK2019: unresolved external symbol "public: class std::vector<struct std::pair<struct std::pair<double,double>,struct std::pair<double,double> >,class std::allocator<struct std::pair<struct std::pair<double,double>,struct std::pair<double,double> > > > __cdecl s_vector<struct std::pair<struct std::pair<double,double>,struct std::pair<double,double> > >::s_get(void)" (?s_get@?$s_vector@U?$pair@U?$pair@NN@std@@U12@@std@@@@QEAA?AV?$vector@U?$pair@U?$pair@NN@std@@U12@@std@@V?$allocator@U?$pair@U?$pair@NN@std@@U12@@std@@@2@@std@@XZ) referenced in function "int __cdecl app(class Object *)" (?app@@YAHPEAVObject@@@Z)
+Support.obj : error LNK2001: unresolved external symbol "public: class std::vector<struct std::pair<struct std::pair<double,double>,struct std::pair<double,double> >,class std::allocator<struct std::pair<struct std::pair<double,double>,struct std::pair<double,double> > > > __cdecl s_vector<struct std::pair<struct std::pair<double,double>,struct std::pair<double,double> > >::s_get(void)" (?s_get@?$s_vector@U?$pair@U?$pair@NN@std@@U12@@std@@@@QEAA?AV?$vector@U?$pair@U?$pair@NN@std@@U12@@std@@V?$allocator@U?$pair@U?$pair@NN@std@@U12@@std@@@2@@std@@XZ)
+Application.obj : error LNK2019: unresolved external symbol "public: class std::vector<unsigned int,class std::allocator<unsigned int> > __cdecl s_vector<unsigned int>::s_get(void)" (?s_get@?$s_vector@I@@QEAA?AV?$vector@IV?$allocator@I@std@@@std@@XZ) referenced in function "int __cdecl app(class Object *)" (?app@@YAHPEAVObject@@@Z)
+Main.obj : error LNK2019: unresolved external symbol "public: __cdecl s_vector<int>::s_vector<int>(void)" (??0?$s_vector@H@@QEAA@XZ) referenced in function main
+Main.obj : error LNK2019: unresolved external symbol "public: class std::vector<int,class std::allocator<int> > __cdecl s_vector<int>::s_get(void)" (?s_get@?$s_vector@H@@QEAA?AV?$vector@HV?$allocator@H@std@@@std@@XZ) referenced in function main
+Objects.obj : error LNK2019: unresolved external symbol "public: __cdecl s_vector<struct std::pair<struct std::pair<double,double>,struct std::pair<double,double> > >::s_vector<struct std::pair<struct std::pair<double,double>,struct std::pair<double,double> > >(void)" (??0?$s_vector@U?$pair@U?$pair@NN@std@@U12@@std@@@@QEAA@XZ) referenced in function "public: __cdecl Object::Object(void)" (??0Object@@QEAA@XZ)
+Objects.obj : error LNK2019: unresolved external symbol "public: void __cdecl s_vector<struct std::pair<struct std::pair<double,double>,struct std::pair<double,double> > >::s_equ(class std::vector<struct std::pair<struct std::pair<double,double>,struct std::pair<double,double> >,class std::allocator<struct std::pair<struct std::pair<double,double>,struct std::pair<double,double> > > >)" (?s_equ@?$s_vector@U?$pair@U?$pair@NN@std@@U12@@std@@@@QEAAXV?$vector@U?$pair@U?$pair@NN@std@@U12@@std@@V?$allocator@U?$pair@U?$pair@NN@std@@U12@@std@@@2@@std@@@Z) referenced in function "public: __cdecl Ball::Ball(struct std::pair<struct std::pair<double,double>,struct std::pair<double,double> >,struct std::pair<struct std::pair<double,double>,struct std::pair<double,double> >,struct std::pair<struct std::pair<double,double>,struct std::pair<double,double> >,float,float,float,float,double,double,int)" (??0Ball@@QEAA@U?$pair@U?$pair@NN@std@@U12@@std@@00MMMMNNH@Z)
+Physics_Engine.obj : error LNK2001: unresolved external symbol "public: void __cdecl s_vector<struct std::pair<struct std::pair<double,double>,struct std::pair<double,double> > >::s_equ(class std::vector<struct std::pair<struct std::pair<double,double>,struct std::pair<double,double> >,class std::allocator<struct std::pair<struct std::pair<double,double>,struct std::pair<double,double> > > >)" (?s_equ@?$s_vector@U?$pair@U?$pair@NN@std@@U12@@std@@@@QEAAXV?$vector@U?$pair@U?$pair@NN@std@@U12@@std@@V?$allocator@U?$pair@U?$pair@NN@std@@U12@@std@@@2@@std@@@Z)
+Objects.obj : error LNK2019: unresolved external symbol "public: __cdecl s_vector<unsigned int>::s_vector<unsigned int>(void)" (??0?$s_vector@I@@QEAA@XZ) referenced in function "public: __cdecl Object::Object(void)" (??0Object@@QEAA@XZ)
+Objects.obj : error LNK2019: unresolved external symbol "public: void __cdecl s_vector<unsigned int>::s_equ(class std::vector<unsigned int,class std::allocator<unsigned int> >)" (?s_equ@?$s_vector@I@@QEAAXV?$vector@IV?$allocator@I@std@@@std@@@Z) referenced in function "public: __cdecl Ball::Ball(struct std::pair<struct std::pair<double,double>,struct std::pair<double,double> >,struct std::pair<struct std::pair<double,double>,struct std::pair<double,double> >,struct std::pair<struct std::pair<double,double>,struct std::pair<double,double> >,float,float,float,float,double,double,int)" (??0Ball@@QEAA@U?$pair@U?$pair@NN@std@@U12@@std@@00MMMMNNH@Z)
+Minkowski_Difference.obj : error LNK2019: unresolved external symbol "public: __cdecl s_vector<struct std::pair<struct std::pair<double,double>,struct std::pair<double,double> > >::s_vector<struct std::pair<struct std::pair<double,double>,struct std::pair<double,double> > >(class s_vector<struct std::pair<struct std::pair<double,double>,struct std::pair<double,double> > > &)" (??0?$s_vector@U?$pair@U?$pair@NN@std@@U12@@std@@@@QEAA@AEAV0@@Z) referenced in function "public: __cdecl Object::Object(class Object &)" (??0Object@@QEAA@AEAV0@@Z)
+Physics_Engine.obj : error LNK2001: unresolved external symbol "public: __cdecl s_vector<struct std::pair<struct std::pair<double,double>,struct std::pair<double,double> > >::s_vector<struct std::pair<struct std::pair<double,double>,struct std::pair<double,double> > >(class s_vector<struct std::pair<struct std::pair<double,double>,struct std::pair<double,double> > > &)" (??0?$s_vector@U?$pair@U?$pair@NN@std@@U12@@std@@@@QEAA@AEAV0@@Z)
+GJK.obj : error LNK2001: unresolved external symbol "public: __cdecl s_vector<struct std::pair<struct std::pair<double,double>,struct std::pair<double,double> > >::s_vector<struct std::pair<struct std::pair<double,double>,struct std::pair<double,double> > >(class s_vector<struct std::pair<struct std::pair<double,double>,struct std::pair<double,double> > > &)" (??0?$s_vector@U?$pair@U?$pair@NN@std@@U12@@std@@@@QEAA@AEAV0@@Z)
+Minkowski_Difference.obj : error LNK2019: unresolved external symbol "public: __cdecl s_vector<unsigned int>::s_vector<unsigned int>(class s_vector<unsigned int> &)" (??0?$s_vector@I@@QEAA@AEAV0@@Z) referenced in function "public: __cdecl Object::Object(class Object &)" (??0Object@@QEAA@AEAV0@@Z)
+Physics_Engine.obj : error LNK2001: unresolved external symbol "public: __cdecl s_vector<unsigned int>::s_vector<unsigned int>(class s_vector<unsigned int> &)" (??0?$s_vector@I@@QEAA@AEAV0@@Z)
+GJK.obj : error LNK2001: unresolved external symbol "public: __cdecl s_vector<unsigned int>::s_vector<unsigned int>(class s_vector<unsigned int> &)" (??0?$s_vector@I@@QEAA@AEAV0@@Z)
+C:\Users\caden\Documents\code\Real\Physics_Engine\x64\Debug\Physics_Engine.exe : fatal error LNK1120: 10 unresolved externals

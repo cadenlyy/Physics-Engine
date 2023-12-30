@@ -1,18 +1,18 @@
 #include "Vertex_array.h"
 #include "Renderer.h"
 
-Vertex_Array::Vertex_Array() {
+Vertex_Array::Vertex_Array() {//constructor
 	GLCall(glGenVertexArrays(1, &m_RendererID));
 }	
 
-Vertex_Array::~Vertex_Array(){
+Vertex_Array::~Vertex_Array(){//destructor
 	GLCall(glDeleteVertexArrays(1, &m_RendererID));
 }
 
-void Vertex_Array::AddBuffer(const Vertex_Buffer& vb, const VertexBufferLayout& layout){
+void Vertex_Array::AddBuffer(const Vertex_Buffer& vb, const VertexBufferLayout& layout){//adding vertex buffers
 	Bind();
 	vb.Bind();
-	const auto& elements = layout.GetElements();
+	const auto& elements = layout.GetElements();//getting layout of vertex buffer
 	unsigned int offset = 0;
 	for (unsigned int i = 0; i < elements.size(); i++) {
 		const auto& element = elements[i];

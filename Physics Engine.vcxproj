@@ -22,33 +22,34 @@
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
     <ProjectGuid>{ea26d602-66de-4860-8b11-a87d332da7da}</ProjectGuid>
-    <RootNamespace>PhysicsEngine</RootNamespace>
+    <RootNamespace>Physics_Engine</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>Physics_Engine</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -152,6 +153,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Dependencies\glm\detail\glm.cpp" />
+    <ClCompile Include="src\Physics\Normal.cpp" />
     <ClCompile Include="src\Application\Application.cpp" />
     <ClCompile Include="src\Application\Index_buffer.cpp" />
     <ClCompile Include="src\Application\Renderer.cpp" />
@@ -162,8 +164,12 @@
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\Objects.cpp" />
     <ClCompile Include="src\Physics\Force.cpp" />
+    <ClCompile Include="src\Physics\Minkowski_Difference.cpp" />
     <ClCompile Include="src\Physics\Physics_Engine.cpp" />
+    <ClCompile Include="src\Physics\GJK.cpp" />
     <ClCompile Include="src\Physics\Vec2d.cpp" />
+    <ClCompile Include="src\Physics\Support.cpp" />
+    <ClCompile Include="src\s_vector.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Dependencies\GLEW\include\GL\eglew.h" />
@@ -454,6 +460,7 @@
     <ClInclude Include="Dependencies\glm\vec3.hpp" />
     <ClInclude Include="Dependencies\glm\vec4.hpp" />
     <ClInclude Include="Dependencies\glm\vector_relational.hpp" />
+    <ClInclude Include="src\Physics\Normal.h" />
     <ClInclude Include="src\Application\Application.h" />
     <ClInclude Include="src\Application\Index_buffer.h" />
     <ClInclude Include="src\Application\Renderer.h" />
@@ -464,9 +471,13 @@
     <ClInclude Include="src\Physics\constants.h" />
     <ClInclude Include="src\Physics\Force.h" />
     <ClInclude Include="src\Objects.h" />
+    <ClInclude Include="src\Physics\GJK.h" />
+    <ClInclude Include="src\Physics\Minkowski_Difference.h" />
     <ClInclude Include="src\Physics\Physics_Engine.h" />
     <ClInclude Include="src\Physics\ODES.cpp" />
+    <ClInclude Include="src\Physics\Support.h" />
     <ClInclude Include="src\Physics\Vec2d.h" />
+    <ClInclude Include="src\s_vector.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Dependencies\GLEW\doc\advanced.html" />
