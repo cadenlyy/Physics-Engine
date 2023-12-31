@@ -169,7 +169,6 @@
     <ClCompile Include="src\Physics\GJK.cpp" />
     <ClCompile Include="src\Physics\Vec2d.cpp" />
     <ClCompile Include="src\Physics\Support.cpp" />
-    <ClCompile Include="src\s_vector.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Dependencies\GLEW\include\GL\eglew.h" />

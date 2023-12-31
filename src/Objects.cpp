@@ -9,7 +9,7 @@ Ball::Ball(ppd Pos, ppd Velo, ppd Acc, float Color1, float Color2, float Color3,
 	Ball::Mass = Mass;
 	Ball::Radius = Radius;
 	Ball::Sides = Sides;
-	Ball::NoVertexPos = Sides + 1;
+	Ball::NoVertexPos = (Sides + 1)*2;
 	float color[4] = {Color1, Color2, Color3, Color4};
 	for(int i = 0; i < 4; i++) Ball::Color[i] = color[i];
 	Ball::VertexPos.s_equ(Ball::VertexOfBall(Radius, Sides));
@@ -56,7 +56,7 @@ Simple_pendulum::Simple_pendulum(ppd AnchorPos, ppd Velo, ppd Acc, float Color1,
 	Simple_pendulum::Ang = Ang;
 	Simple_pendulum::Radius = Radius;
 	Simple_pendulum::Sides = Sides;
-	Simple_pendulum::NoVertexPos = Sides + 4;
+	Simple_pendulum::NoVertexPos = (Sides + 4)*2;
 	float color[4] = { Color1, Color2, Color3, Color4 };
 	for (int i = 0; i < 4; i++) Simple_pendulum::Color[i] = color[i];
 	Simple_pendulum::VertexPos.s_equ(Simple_pendulum::VertexOfSimplePendulum(Radius, Sides));
@@ -122,7 +122,7 @@ Complex_pendulum::Complex_pendulum(ppd AnchorPos, ppd Velo, ppd Acc, float Color
 	Complex_pendulum::Radius2 = Radius2;
 
 	Complex_pendulum::Sides = Sides;
-	Complex_pendulum::NoVertexPos = Sides * 2 + 8;
+	Complex_pendulum::NoVertexPos = (Sides * 8)*2;
 	
 	Complex_pendulum::VertexPos.s_equ(Complex_pendulum::VertexOfComplexPendulum(Radius, Radius2, Sides));
 	Complex_pendulum::IndexPos.s_equ(Complex_pendulum::IndexOfComplexPendulum(Sides));

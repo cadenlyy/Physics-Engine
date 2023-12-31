@@ -52,7 +52,7 @@ extern int app(Object* Object1) {
     }
 
     //Outputing Version of OpenGL being used
-    GLCall(std::cout << glGetString(GL_VERSION) << std::endl);
+    GLCall(std::cout << "OpenGL Version: " << glGetString(GL_VERSION) << std::endl);
 
     {
         //increment lines (draws line of increments of 1 cm, takes 100 pixels to be 1cm)
@@ -113,7 +113,7 @@ extern int app(Object* Object1) {
         std::vector <unsigned int> Ind = Object1->IndexPos.s_get();//importing from shared memory
 
         Vertex_Array va;
-        Vertex_Buffer vb(nullptr, Pos.size() * sizeof(float), "DYNAMIC");//creates a dynamic vertex buffer without any values
+        Vertex_Buffer vb(nullptr, Object1->NoVertexPos * sizeof(float), "DYNAMIC");//creates a dynamic vertex buffer without any values
 
         VertexBufferLayout layout;
         layout.Push<float>(2);//layout of buffer is just x and y coords of vertex position
