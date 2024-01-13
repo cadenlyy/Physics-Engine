@@ -24,13 +24,13 @@ A time step is one of the most important components of a physics engine as physi
 \subsection{Force generator}
 A force generator is a function that calculates the resultant force acting on an object at the time it is at. It does so by inputing known values such as the previous accleration, velocity, displacement of the object into equations which calculates what forces should be acting on it. 
 
-This can be done by 2 major methods, the equation based method and the collision based method.
+This can be done by 2 major methods, the equation based method and the constraint based method.
 
 The equation based method mostly gives you a more accurate calculation and is typically faster as it has a smaller time complexity. It is also simplier to implement as it does not usualy require multiple functions. However this method is restricted due to the need for the equation to be manually calculated and thus makes it difficult to have very complex simulations with multiple objects.
 
-The collision based method fixed that problem by detecting, generated and solving collsions between objects so as to enable interactions between objects and also allows for simulations where the user can simply create obejcts without the need of assigning a equation to define their movement. However as said before, this method requires much more code and a deeper understanding of mathematics and typically has a larger time complexity and thus runs slower. This method does have another downside which is that it is only useful for physical simulations and thus would be useless for simulations of other things such as circuits or waves.
+The constraint based method uses the concept of constraints. For example a rigid body in 2D has 3 degrees of freedom, 2 positional and 1 rotational. A constraint decreases the degrees of freedom of an object. For instance, a constraint that pins an object in space at its center of mass decreases the object’s degrees of freedom by 2 as all the positional degrees of freedom are removed and the object can thus now only rotate with 1 degrees of freedom.
 
-While both methods can create simple simulations on thier own, it is often necessary for a combination of both to create much more complex simulations.
+In a constraint based physics engine, everything is modled as a constraint including collision contacts, frictions, springs, pulleys. This works by using constrains to solve interactions between 2 or more bodies.
 
 \subsection{Ordinary differential equation solver(ODES)}
 A ODES is a fucntion that calculates the value of the integrated equation at a time step using an approximation to allow you to find an approximation of the velocity and displacement of an object at each time step. This can be done by 2 main methods. Euler forward differencing which is a simpler but more unstable method, and Runge Kutta which has a fourth order method. 

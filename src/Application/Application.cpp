@@ -1,6 +1,10 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
+
+#define GLT_IMPLEMENTATION
+#define GLT_MANUAL_VIEWPORT
+#include <glText.h>
 #include <glm/gtc/matrix_transform.hpp>
 #include <iostream>
 #include <Windows.h>
@@ -49,6 +53,13 @@ extern int app(Object* Object1) {
     //Check id glew can be run
     if (glewInit() != GLEW_OK) {
         std::cout << "GLEW initialisation failed" << "\n";
+    }
+
+    if (!gltInit())
+    {
+        fprintf(stderr, "Failed to initialize glText\n");
+        glfwTerminate();
+        return EXIT_FAILURE;
     }
 
     //Outputing Version of OpenGL being used
@@ -136,11 +147,22 @@ extern int app(Object* Object1) {
 
         Renderer renderer;
 
+        GLTtext* text = gltCreateText();
+        
+
+        gltViewport(app.Width, app.Height);
+
+        double FPS = 0;
+        char str[30];
+        double FPSUpdateTime = 0;
+        sprintf_s(str, "FPS: %.0f", FPS);
+        
         while (!glfwWindowShouldClose(window)) {
 
             LARGE_INTEGER freq;
             LARGE_INTEGER t1, t2;
             double elapsedTime = 0;
+            
 
             QueryPerformanceFrequency(&freq);
             QueryPerformanceCounter(&t1);
@@ -170,16 +192,35 @@ extern int app(Object* Object1) {
 
             GLCall(glDrawElements(GL_TRIANGLES, Object1->IndexPos.s_get().size(), GL_UNSIGNED_INT, nullptr));//drawing everything on the window
 
+            QueryPerformanceCounter(&t2);
+            elapsedTime = (t2.QuadPart - t1.QuadPart) * 1000.0 / freq.QuadPart / 100;//finds elasped time for one frame
+            FPS =  1/elapsedTime;//finds FPS based on elaseped time
+            if (FPSUpdateTime + elapsedTime <= 0.2) FPSUpdateTime += elapsedTime;//How time before update fps display
+            else FPSUpdateTime = 0;
+            elapsedTime = 0;
+
+            //FPS display
+            gltBeginDraw();
+
+            if (FPSUpdateTime == 0) {//check if should update display
+                sprintf_s(str, "FPS: %.0f", FPS);
+            }
+
+            gltSetText(text, str);
+
+            gltColor(1.0f, 1.0f, 1.0f, 1.0f);
+            gltDrawText2D(text, 1, 1, 2);
+
+            gltEndDraw();
+
             glfwSwapBuffers(window);
             glfwPollEvents();
 
-            QueryPerformanceCounter(&t2);
-            elapsedTime = (t2.QuadPart - t1.QuadPart) * 1000.0 / freq.QuadPart / 1000;
-            int FPS = 1 / elapsedTime;
-            elapsedTime = 0;
+            
             //std::cout << FPS << std::endl;//output FPS
         }
     }
+    gltTerminate();
     glfwTerminate();//stopping the app
     return 0;
 }

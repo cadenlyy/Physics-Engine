@@ -60,8 +60,8 @@ int main() {
 	Ball Ball1(vec2d::CalculateMagnitude(10, 10, 0), vec2d::CalculateMagnitude(15 , 7.5, 0), { {0,0},{0,0} }, 0.2f, 0.3f, 0.8f, 0.1f, 100, 0.7, 100);
 	/*Anchorpos, Velo, Acc, Colour1, Colour2, Colour3, Colour4, Length, Angv, Ang, Radius, Sides*/
 	Simple_pendulum Pendulum1(vec2d::CalculateMagnitude(18, 21, 0), vec2d::CalculateMagnitude(0, 0, 0), { {0,0},{0,0} }, 0.2f, 0.3f, 0.8f, 0.1f, 10, 0, PI/5, 0.7, 30);
-	/*                         Anchorpos,                            Velo,                               Acc,                                Colour1, Colour2, Colour3, Colour4, Mass, Length, Anga, Angv, Ang, Radius, Velo2,                              Acc2,                               Mass2, Length2, Anga2, Angv2, Ang2, Radius2, Sides*/
-	Complex_pendulum Pendulum2(vec2d::CalculateMagnitude(18, 11, 0), vec2d::CalculateMagnitude(0, 0, 0), vec2d::CalculateMagnitude(0, 0, 0), 0.2f, 0.3f, 0.8f, 0.1f, 10, 5, 0, 0.01, PI, 0.3, vec2d::CalculateMagnitude(0, 0, 0), vec2d::CalculateMagnitude(0, 0, 0), 20, 3, 0, 0, PI / 2, 1, 100);
+	/*                         Anchorpos,                            Velo,                               Acc,                                Colour1, Colour2, Colour3, Colour4, Mass, Length, Anga, Angv, Ang, Radius, Velo2,                              Acc2,bMass2, Length2, Anga2, Angv2, Ang2, Radius2, Sides*/
+	Complex_pendulum Pendulum2(vec2d::CalculateMagnitude(9, 6, 0), vec2d::CalculateMagnitude(0, 0, 0), vec2d::CalculateMagnitude(0, 0, 0), 0.2f, 0.3f, 0.8f, 0.1f, 10, 2.5, 0, 0.0, PI, 0.3, vec2d::CalculateMagnitude(0, 0, 0), vec2d::CalculateMagnitude(0, 0, 0), 0.7, 1.5, 0, 0, PI / 2, 0.3, 100);
 	double ts = 0.001;
 	std::thread application(app, &Pendulum2);
 	/*Class type, object, timestep, simulation function, ODES type*/
